@@ -1,6 +1,6 @@
 import { trim } from 'ramda'
 import * as path from 'path'
-import { IgniteToolbox } from '../../types'
+import { SolidtechRNToolbox } from '../../types'
 
 export type AddModuleOptions = {
   link?: boolean
@@ -8,7 +8,7 @@ export type AddModuleOptions = {
   version?: string
 }
 
-export default (toolbox: IgniteToolbox) => {
+export default (toolbox: SolidtechRNToolbox) => {
   const getModuleName = (moduleName, options: AddModuleOptions) => {
     let name
     if (options.version) {
@@ -19,7 +19,7 @@ export default (toolbox: IgniteToolbox) => {
       toolbox.print.warning(`DEPRECATION WARNING:`)
       toolbox.print.warning(`Plugin should specify specific version for NPM module ${moduleName} in addModule call.`)
       toolbox.print.warning(`In your addModule call, add the following:`)
-      toolbox.print.warning(`   await ignite.addModule(NPM_MODULE_NAME, { version: 'VERSION HERE' })`)
+      toolbox.print.warning(`   await SolidtechRN.addModule(NPM_MODULE_NAME, { version: 'VERSION HERE' })`)
     }
     return name || moduleName
   }
@@ -28,8 +28,8 @@ export default (toolbox: IgniteToolbox) => {
    * Adds a npm-based module to the project.
    */
   async function addModule(moduleName: string, options: AddModuleOptions = {}) {
-    const { print, system, ignite } = toolbox
-    const { useYarn } = ignite
+    const { print, system, SolidtechRN } = toolbox
+    const { useYarn } = SolidtechRN
     const moduleFullName = getModuleName(moduleName, options)
 
     const depType = options.dev ? 'as dev dependency' : ''
@@ -39,12 +39,12 @@ export default (toolbox: IgniteToolbox) => {
     if (useYarn) {
       const addSwitch = options.dev ? '--dev' : ''
       const cmd = trim(`yarn add ${moduleFullName} ${addSwitch}`)
-      ignite.log(cmd)
+      SolidtechRN.log(cmd)
       await system.run(cmd)
     } else {
       const installSwitch = options.dev ? '--save-dev' : '--save'
       const cmd = trim(`npm i ${moduleFullName} ${installSwitch}`)
-      ignite.log(cmd)
+      SolidtechRN.log(cmd)
       await system.run(cmd)
     }
     spinner.stop()

@@ -2,27 +2,25 @@
 
 ## Maintained by IR
 
-| Name | Description |
-|------|-------------|
-| [Ignite Bowser](https://github.com/infinitered/ignite-bowser) | React Navigation, MobX State Tree, & TypeScript |
-
+| Name                                                                    | Description                                     |
+| ----------------------------------------------------------------------- | ----------------------------------------------- |
+| [SolidtechRN Bowser](https://github.com/solidtechvn/SolidtechRN-bowser) | React Navigation, MobX State Tree, & TypeScript |
 
 ## Formely maintained by IR (now on community support or no longer maintained)
 
-| Name | Description |
-|------|-------------|
-| [ignite-andross](https://github.com/infinitered/ignite-andross) | React Navigation, Redux, & Redux Sagas |
-| [ignite-ir-boilerplate-2016](https://github.com/infinitered/ignite-ir-boilerplate-2016) | InfiniteRed's 2016 tech stack |
-
+| Name                                                                                              | Description                            |
+| ------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| [SolidtechRN-andross](https://github.com/solidtechvn/SolidtechRN-andross)                         | React Navigation, Redux, & Redux Sagas |
+| [SolidtechRN-ir-boilerplate-2016](https://github.com/solidtechvn/SolidtechRN-ir-boilerplate-2016) | solidtechvn's 2016 tech stack          |
 
 ## 3rd Party
 
-| Name | Description | Author |
-|------|-------------|--------|
-| [ignite-native-base-boilerplate](https://github.com/GeekyAnts/ignite-native-base-boilerplate) | An ignite boilerplate with NativeBase screens | [NativeBase](https://github.com/GeekyAnts) |
-| [ignite-jhipster](https://github.com/ruddell/ignite-jhipster) | A React Native boilerplate for JHipster apps. | [Jon Ruddell](https://github.com/ruddell) |
-| [ignite-appclon-mobx](https://github.com/Appclon/ignite-appclon-mobx) | Appclon + Ignite Boilerplate | [Appclon](https://github.com/Appclon) |
-| [ignite-typescript-boilerplate](https://github.com/aerian-studios/ignite-typescript-boilerplate/) | A boilerplate for TypeScript apps, based on ignite-ir-boilerplate  | [Matt Kane](https://github.com/ascorbic) |
-| [ignite-expo-boilerplate](https://github.com/jbosse/ignite-expo-boilerplate) | [ARCHIVED] Fork of ignite-ir-boilerplate modified to work with Expo.io  | [Jimmy Bosse](https://github.com/jbosse) |
-| [ignite-kryptonite](https://github.com/juddey/ignite-kryptonite) | Your react web thing, ignitified.  | [Justin Lane](https://github.com/juddey) |
-| [ignite-boilerplate-andross-typescript](https://github.com/lvlrSajjad/ignite-boilerplate-andross-typescript) | Customized version of ignite Andross With TypeScript Support. | [Sajjad Asadi](https://github.com/lvlrSajjad) |
+| Name                                                                                                                   | Description                                                                 | Author                                        |
+| ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------- |
+| [SolidtechRN-native-base-boilerplate](https://github.com/GeekyAnts/SolidtechRN-native-base-boilerplate)                | An SolidtechRN boilerplate with NativeBase screens                          | [NativeBase](https://github.com/GeekyAnts)    |
+| [SolidtechRN-jhipster](https://github.com/ruddell/SolidtechRN-jhipster)                                                | A React Native boilerplate for JHipster apps.                               | [Jon Ruddell](https://github.com/ruddell)     |
+| [SolidtechRN-appclon-mobx](https://github.com/Appclon/SolidtechRN-appclon-mobx)                                        | Appclon + SolidtechRN Boilerplate                                           | [Appclon](https://github.com/Appclon)         |
+| [SolidtechRN-typescript-boilerplate](https://github.com/aerian-studios/SolidtechRN-typescript-boilerplate/)            | A boilerplate for TypeScript apps, based on SolidtechRN-ir-boilerplate      | [Matt Kane](https://github.com/ascorbic)      |
+| [SolidtechRN-expo-boilerplate](https://github.com/jbosse/SolidtechRN-expo-boilerplate)                                 | [ARCHIVED] Fork of SolidtechRN-ir-boilerplate modified to work with Expo.io | [Jimmy Bosse](https://github.com/jbosse)      |
+| [SolidtechRN-kryptonite](https://github.com/juddey/SolidtechRN-kryptonite)                                             | Your react web thing, ignitified.                                           | [Justin Lane](https://github.com/juddey)      |
+| [SolidtechRN-boilerplate-andross-typescript](https://github.com/lvlrSajjad/SolidtechRN-boilerplate-andross-typescript) | Customized version of SolidtechRN Andross With TypeScript Support.          | [Sajjad Asadi](https://github.com/lvlrSajjad) |

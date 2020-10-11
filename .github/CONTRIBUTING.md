@@ -1,8 +1,8 @@
-# Contributing to Ignite CLI
+# Contributing to SolidtechRN CLI
 
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/) [![Build Status](https://semaphoreci.com/api/v1/ir/ignite/branches/master/shields_badge.svg)](https://semaphoreci.com/ir/react_native_base)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/) [![Build Status](https://semaphoreci.com/api/v1/ir/SolidtechRN/branches/master/shields_badge.svg)](https://semaphoreci.com/ir/react_native_base)
 
-We welcome all contributors to Ignite CLI! This contributing guide will help you get up and running to submit your first pull request.
+We welcome all contributors to SolidtechRN CLI! This contributing guide will help you get up and running to submit your first pull request.
 
 Before submitting a pull request, you will want to make sure that your branch meets the following requirements:
 
@@ -22,47 +22,47 @@ _These examples assume you're using yarn rather than npm. If you're not using ya
 
 ## Getting Started
 
-1. Fork and then clone the repo (`git clone git@github.com:<YOURGITHUBUSER>/ignite.git`)
-2. CD into the directory (`cd ignite`)
-3. Uninstall npm version (`yarn global remove ignite-cli && yarn global remove react-native-ignite`)
+1. Fork and then clone the repo (`git clone git@github.com:<YOURGITHUBUSER>/SolidtechRN.git`)
+2. CD into the directory (`cd SolidtechRN`)
+3. Uninstall npm version (`yarn global remove SolidtechRN-cli && yarn global remove react-native-SolidtechRN`)
 4. Pull all package dependencies (`yarn`)
 5. Link the local binary (`yarn link`)
 
 Test it out:
 
 ```sh
-$ ignite --version
+$ SolidtechRN --version
 <current version here>
-$ which ignite
-/usr/local/bin/ignite
-$ ignite new UberForHeadLice
+$ which SolidtechRN
+/usr/local/bin/SolidtechRN
+$ SolidtechRN new UberForHeadLice
 ...
 ```
 
-Now you're ready to check out a new branch and get hacking on Ignite CLI!
+Now you're ready to check out a new branch and get hacking on SolidtechRN CLI!
 
 ## Source Code
 
-To get familiarized with Ignite CLI's source code, read the [Tour of Ignite CLI's source code](../docs/advanced-guides/tour.md).
+To get familiarized with SolidtechRN CLI's source code, read the [Tour of SolidtechRN CLI's source code](../docs/advanced-guides/tour.md).
 
 ## How to Build and Run App
 
 ```sh
 $ cd ~/your/apps/directory
-$ ignite new HackingOnIgnite
+$ SolidtechRN new HackingOnSolidtechRN
 ```
 
 If you want to play with a new boilerplate, reference it locally:
 
 ```sh
-$ ignite new HackingOnBoilerplate -b /full/path/to/boilerplate
+$ SolidtechRN new HackingOnBoilerplate -b /full/path/to/boilerplate
 ```
 
 ## Testing the App
 
 We use [AVA](https://github.com/avajs/ava) for testing.
 
-To run tests from the ignite-base folder:
+To run tests from the SolidtechRN-base folder:
 
 ```sh
 $ yarn test
@@ -86,7 +86,7 @@ $ yarn run integration
 
 This project adheres to Standard. Our CI enforces this, so we suggest you enable linting to keep your project compliant during development.
 
-**To Run Lint** from ignite-base:
+**To Run Lint** from SolidtechRN-base:
 
 ```sh
 $ yarn lint

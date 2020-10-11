@@ -47,7 +47,7 @@ jobs:
           name: Change Permissions
           command: sudo chown -R $(whoami) /usr/local
       - run:
-          name: Link Ignite CLI
+          name: Link SolidtechRN CLI
           command: npm link
       - run:
           # We don't want to install Cocoapods on ubuntu where we run the tests.

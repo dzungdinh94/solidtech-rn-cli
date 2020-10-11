@@ -1,8 +1,8 @@
-import { IgniteToolbox } from '../types'
+import { SolidtechRNToolbox } from '../types'
 
 module.exports = {
-  description: 'Prints current version of installed ignite',
-  run: async function(toolbox: IgniteToolbox) {
+  description: 'Prints current version of installed solidtechRN',
+  run: async function(toolbox: SolidtechRNToolbox) {
     const { parameters, print } = toolbox
     if (parameters.string.toLowerCase() === 'love you') {
       const heart = `

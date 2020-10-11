@@ -19,19 +19,19 @@ mockery.registerMock('gluegun', {
 // our cli
 const cli = require('../../../src/cli/cli')
 
-test('ignite', async () => {
+test('SolidtechRN', async () => {
   mockGluegunBuilder.onCreateRuntime(builderProps => {
     // we expect our CLI to be configured like this
     expect(builderProps).toEqual({
-      brand: 'ignite',
+      brand: 'SolidtechRN',
       loadAlls: [
         {
-          dir: `${process.cwd()}/ignite/plugins`,
+          dir: `${process.cwd()}/SolidtechRN/plugins`,
           opts: {},
         },
         {
           dir: `${process.cwd()}/node_modules`,
-          opts: { hidden: true, matching: 'ignite-*' },
+          opts: { hidden: true, matching: 'SolidtechRN-*' },
         },
         {
           dir: `${process.cwd()}/node_modules`,

@@ -1,28 +1,28 @@
 import detectInstall from './detect-install'
 import importPlugin from './import-plugin'
-import { IgniteToolbox, IgniteDetectInstall } from '../types'
-import attachIgnite from './attach-ignite'
+import { SolidtechRNToolbox, SolidtechRNDetectInstall } from '../types'
+import attachSolidtechRN from './attach-solidtechRN'
 
 /**
- * Installs and runs an ignite boilerplate.
+ * Installs and runs an solidtechRN boilerplate.
  *
  * Overview:
  *
- *    * ensures we're not already in an ignite directory
+ *    * ensures we're not already in an solidtechRN directory
  *    * installs the boilerplate package
  *    * verifies that the boilerplate is legit
  *    * runs it
  *
  */
-export default async (toolbox: IgniteToolbox): Promise<boolean> => {
-  const { print, ignite, filesystem, parameters, meta } = toolbox
+export default async (toolbox: SolidtechRNToolbox): Promise<boolean> => {
+  const { print, solidtechRN, filesystem, parameters, meta } = toolbox
 
-  ignite.log('running boilerplate-install command')
+  solidtechRN.log('running boilerplate-install command')
 
   const boilerplateName: string = parameters.options.boilerplate || parameters.options.b
 
   // determine where the package comes from
-  let installSource: IgniteDetectInstall
+  let installSource: SolidtechRNDetectInstall
   try {
     installSource = detectInstall(boilerplateName, toolbox)
   } catch (e) {
@@ -36,7 +36,7 @@ export default async (toolbox: IgniteToolbox): Promise<boolean> => {
   const boilerplatePackage = modulePath + '/package.json'
 
   // install the plugin
-  ignite.log(`installing plugin ${moduleName} from ${installSource.type}`)
+  solidtechRN.log(`installing plugin ${moduleName} from ${installSource.type}`)
   const exitCode = await importPlugin(toolbox, installSource)
   if (exitCode) return false
 
@@ -44,7 +44,7 @@ export default async (toolbox: IgniteToolbox): Promise<boolean> => {
   const spinner = print.spin('installing boilerplate')
 
   // read the info from the boilerplate
-  ignite.log(`reading boilerplate package.json`)
+  solidtechRN.log(`reading boilerplate package.json`)
   type PackageJSON = { name: string; version: string } | void
   const packageJSON: PackageJSON = filesystem.read(boilerplatePackage, 'json')
   if (!packageJSON) {
@@ -62,7 +62,7 @@ export default async (toolbox: IgniteToolbox): Promise<boolean> => {
   let pluginModule
   try {
     const boilerplatePath = `${modulePath}/boilerplate.js`
-    ignite.log(`loading boilerplate install script from ${boilerplatePath}`)
+    solidtechRN.log(`loading boilerplate install script from ${boilerplatePath}`)
     pluginModule = require(boilerplatePath)
   } catch (e) {
     print.error('Error call stack:')
@@ -77,30 +77,30 @@ export default async (toolbox: IgniteToolbox): Promise<boolean> => {
     return false
   }
 
-  // set the path to the current running ignite plugin
-  ignite.setIgnitePluginPath(modulePath)
+  // set the path to the current running solidtechRN plugin
+  solidtechRN.setSolidtechRNPluginPath(modulePath)
 
   // stop the spinner
   spinner.stop()
 
   // run the boilerplate
   try {
-    ignite.log('running install function from boilerplate')
+    solidtechRN.log('running install function from boilerplate')
     await pluginModule.install(toolbox)
-    ignite.log('done running install function from boilerplate')
+    solidtechRN.log('done running install function from boilerplate')
   } catch (e) {
     print.error(`an error occured while installing ${moduleName} boilerplate.`)
     print.error(e)
     return false
   }
 
-  // attach Ignite
-  ignite.log('attaching Ignite')
-  await attachIgnite(toolbox, {
+  // attach SolidtechRN
+  solidtechRN.log('attaching SolidtechRN')
+  await attachSolidtechRN(toolbox, {
     createdWith: meta.version(),
     boilerplate: packageJSON.name,
     boilerplateVersion: packageJSON.version,
   })
-  ignite.log('boilerplate installed')
+  solidtechRN.log('boilerplate installed')
   return true
 }

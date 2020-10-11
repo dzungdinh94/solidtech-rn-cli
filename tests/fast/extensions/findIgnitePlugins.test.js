@@ -1,11 +1,11 @@
-const extension = require('../../../src/extensions/ignite/find-ignite-plugins').default
+const extension = require('../../../src/extensions/SolidtechRN/find-SolidtechRN-plugins').default
 const path = require('path')
 
 test('has the right interface', () => {
   expect(typeof extension).toBe('function')
   const toolbox = { filesystem: { separator: path.sep } }
-  const findIgnitePlugin = extension(toolbox)
-  expect(typeof findIgnitePlugin).toBe('function')
+  const findSolidtechRNPlugin = extension(toolbox)
+  expect(typeof findSolidtechRNPlugin).toBe('function')
 })
 
 test('plugin-less', () => {
@@ -15,40 +15,40 @@ test('plugin-less', () => {
       plugins: [],
     },
   }
-  const findIgnitePlugin = extension(toolbox)
-  expect(findIgnitePlugin()).toEqual([])
+  const findSolidtechRNPlugin = extension(toolbox)
+  expect(findSolidtechRNPlugin()).toEqual([])
 })
 
-test('skips non-ignite plugins', () => {
+test('skips non-SolidtechRN plugins', () => {
   const toolbox = {
     filesystem: { separator: path.sep },
     runtime: {
       plugins: [{ name: 'x', directory: 'y' }],
     },
   }
-  const findIgnitePlugin = extension(toolbox)
-  expect(findIgnitePlugin()).toEqual([])
+  const findSolidtechRNPlugin = extension(toolbox)
+  expect(findSolidtechRNPlugin()).toEqual([])
 })
 
-test('finds ignite- prefixed plugins', () => {
+test('finds SolidtechRN- prefixed plugins', () => {
   const toolbox = {
     filesystem: { separator: path.sep },
     runtime: {
-      plugins: [{ name: 'ignite-foo', directory: 'y' }],
+      plugins: [{ name: 'SolidtechRN-foo', directory: 'y' }],
     },
   }
-  const findIgnitePlugin = extension(toolbox)
-  expect(findIgnitePlugin()).toEqual([{ name: 'ignite-foo', directory: 'y' }])
+  const findSolidtechRNPlugin = extension(toolbox)
+  expect(findSolidtechRNPlugin()).toEqual([{ name: 'SolidtechRN-foo', directory: 'y' }])
 })
 
 test('finds project plugins', () => {
-  const dir = `${process.cwd()}${path.sep}ignite${path.sep}plugins${path.sep}y`
+  const dir = `${process.cwd()}${path.sep}SolidtechRN${path.sep}plugins${path.sep}y`
   const toolbox = {
     filesystem: { separator: path.sep },
     runtime: {
       plugins: [{ name: 'x', directory: dir }],
     },
   }
-  const findIgnitePlugin = extension(toolbox)
-  expect(findIgnitePlugin()).toEqual([{ name: 'x', directory: dir }])
+  const findSolidtechRNPlugin = extension(toolbox)
+  expect(findSolidtechRNPlugin()).toEqual([{ name: 'x', directory: dir }])
 })

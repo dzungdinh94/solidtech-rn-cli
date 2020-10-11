@@ -1,6 +1,6 @@
-# How use an Ignite CLI Development Build
+# How use an SolidtechRN CLI Development Build
 
-This guide will walk you through how to setup and use a pre-release or experimental build of Ignite CLI.
+This guide will walk you through how to setup and use a pre-release or experimental build of SolidtechRN CLI.
 
 ## Requirements
 
@@ -18,64 +18,64 @@ If you're on a Mac, you can use one of these techniques:
 
 #### Out With The Old
 
-First, if you already have a copy of Ignite CLI installed with `npm`, uninstall it with the commands listed below.
+First, if you already have a copy of SolidtechRN CLI installed with `npm`, uninstall it with the commands listed below.
 
 Exact one depends on what you may have installed previously:
 
 ```sh
-$ npm rm -g ignite
-$ npm rm -g ignite-cli
-$ npm rm -g react-native-ignite
+$ npm rm -g SolidtechRN
+$ npm rm -g SolidtechRN-cli
+$ npm rm -g react-native-SolidtechRN
 ```
 
 #### In With The New
 
-Clone Ignite CLI's repository from https://github.com/infinitered/ignite to your local development machine.
+Clone SolidtechRN CLI's repository from https://github.com/solidtechvn/SolidtechRN to your local development machine.
 
-> Note: Depending on the version of Ignite CLI you are targeting, you may be cloning a forked repository of Ignite CLI and the git URLs may look different.
+> Note: Depending on the version of SolidtechRN CLI you are targeting, you may be cloning a forked repository of SolidtechRN CLI and the git URLs may look different.
 
 ```sh
-$ git clone git@github.com:infinitered/ignite.git
-$ cd ignite
+$ git clone git@github.com:solidtechvn/SolidtechRN.git
+$ cd SolidtechRN
 ```
 
-Now use `yarn` to install Ignite CLI:
+Now use `yarn` to install SolidtechRN CLI:
 
 ```sh
 $ yarn
 ```
 
-Next make the `ignite` command available globally. To do this, run `yarn link`:
+Next make the `SolidtechRN` command available globally. To do this, run `yarn link`:
 
 ```sh
 $ yarn link
 ```
 
-> Note: If you get an error at this point, it is probably related to not removing a previously installed version of Ignite CLI. See the commands above to uninstall Ignite CLI.
+> Note: If you get an error at this point, it is probably related to not removing a previously installed version of SolidtechRN CLI. See the commands above to uninstall SolidtechRN CLI.
 
 > Note: If you have run through the `npm rm` commands listed above and you get this error upon running `yarn link`
 
 ```
-warning There's already a package called "ignite-cli" registered. This command has had no effect. If this command was run in another folder with the same name, the other folder is still linked. Please run yarn unlink in the other folder if you want to register this folder.
+warning There's already a package called "SolidtechRN-cli" registered. This command has had no effect. If this command was run in another folder with the same name, the other folder is still linked. Please run yarn unlink in the other folder if you want to register this folder.
 ```
 
 You may have a symlink that must be removed. CD to `~/.config/yarn/link` and run `ls`
 
-If you see a symlink listed as `ignite-cli`, delete it. CD back to the `ignite` directory and run `yarn link`. It should run without errors and return something similar to the following in the terminal:
+If you see a symlink listed as `SolidtechRN-cli`, delete it. CD back to the `SolidtechRN` directory and run `yarn link`. It should run without errors and return something similar to the following in the terminal:
 
 ```
 yarn link v1.13.0
-success Registered "ignite-cli".
-info You can now run `yarn link "ignite-cli"` in the projects where you want to use this package and it will be used instead.
+success Registered "SolidtechRN-cli".
+info You can now run `yarn link "SolidtechRN-cli"` in the projects where you want to use this package and it will be used instead.
 ```
 
 ## Testing Your Installation
 
-To test your installation of Ignite CLI, let's try generating a new project. Navigate to a new directory where you'd like to create a new project and run the `ignite new` command:
+To test your installation of SolidtechRN CLI, let's try generating a new project. Navigate to a new directory where you'd like to create a new project and run the `SolidtechRN new` command:
 
 ```sh
 $ cd ~
-$ ignite new MyApp
+$ SolidtechRN new MyApp
 ```
 
-> Again, if you are having issues, the Infinite Red Community Slack may be able to help. You can find us by visiting [http://community.infinite.red](http://community.infinite.red) and then joining the `#ignite` channel.
+> Again, if you are having issues, the Infinite Red Community Slack may be able to help. You can find us by visiting [http://community.infinite.red](http://community.infinite.red) and then joining the `#SolidtechRN` channel.

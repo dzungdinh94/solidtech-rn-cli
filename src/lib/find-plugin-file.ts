@@ -1,4 +1,4 @@
-import { IgniteToolbox } from '../types'
+import { SolidtechRNToolbox } from '../types'
 
 /**
  * Retrieves a plugin's entry point file, which is usually ./plugin.js.
@@ -6,7 +6,7 @@ import { IgniteToolbox } from '../types'
  * @param {Object} toolbox         The gluegun toolbox
  */
 
-export default function findPluginFile(toolbox: IgniteToolbox, modulePath: string): string {
+export default function findPluginFile(toolbox: SolidtechRNToolbox, modulePath: string): string {
   const { filesystem, print } = toolbox
 
   // Look for plugin.js

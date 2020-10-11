@@ -1,6 +1,6 @@
-import { IgniteToolbox } from '../../types'
+import { SolidtechRNToolbox } from '../../types'
 
-export default (toolbox: IgniteToolbox) => {
+export default (toolbox: SolidtechRNToolbox) => {
   const { filesystem, template } = toolbox
 
   /**
@@ -11,7 +11,7 @@ export default (toolbox: IgniteToolbox) => {
    */
   async function generate(opts: { template: string }) {
     // checked for a sporked version
-    const sporkDirectory = `${filesystem.cwd()}/ignite/Spork/${toolbox.plugin.name}`
+    const sporkDirectory = `${filesystem.cwd()}/SolidtechRN/Spork/${toolbox.plugin.name}`
     const isSporked = filesystem.exists(`${sporkDirectory}/${opts.template}`)
 
     // override the directory to point to the spork directory if we found one

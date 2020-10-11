@@ -1,14 +1,14 @@
 import { GluegunToolbox, GluegunCommand } from 'gluegun'
 
-export type IgniteTools = {
-  ignitePluginPath: Function
-  setIgnitePluginPath: Function
+export type SolidtechRNTools = {
+  solidtechRNPluginPath: Function
+  setSolidtechRNPluginPath: Function
   useYarn: boolean
-  loadIgniteConfig: Function
-  saveIgniteConfig: Function
-  setIgniteConfig: Function
-  removeIgniteConfig: Function
-  findIgnitePlugins: Function
+  loadSolidtechRNConfig: Function
+  saveSolidtechRNConfig: Function
+  setSolidtechRNConfig: Function
+  removeSolidtechRNConfig: Function
+  findSolidtechRNPlugins: Function
   addModule: Function
   addAndroidPermission: Function
   removeModule: Function
@@ -40,25 +40,25 @@ export type ReactNativeTools = {
     template?: string
     skipJest?: boolean
     useNpm?: boolean
-  }): Promise<IgniteRNInstallResult>
+  }): Promise<SolidtechRNRNInstallResult>
 }
 
-export interface IgniteToolbox extends GluegunToolbox {
-  ignite: IgniteTools
+export interface SolidtechRNToolbox extends GluegunToolbox {
+  solidtechRN: SolidtechRNTools
   reactNative: ReactNativeTools
 }
 
-export interface IgnitePlugin {
+export interface SolidtechRNPlugin {
   name: string
   directory: string
-  commands: GluegunCommand<IgniteToolbox>[]
+  commands: GluegunCommand<SolidtechRNToolbox>[]
 }
 
-export type IgniteConfig = {
+export type SolidtechRNConfig = {
   generators?: string[]
 }
 
-export type IgniteDetectInstall = {
+export type SolidtechRNDetectInstall = {
   moduleName: string
   type: 'directory' | 'npm' | 'git'
   directory?: string
@@ -68,13 +68,13 @@ export type IgniteDetectInstall = {
   url?: string
 }
 
-export type IgniteNPMPackageParts = {
+export type SolidtechRNNPMPackageParts = {
   name: string
   scoped: boolean
   version?: string
 }
 
-export type IgnitePatchInFileOptions = {
+export type SolidtechRNPatchInFileOptions = {
   before?: string
   after?: string
   replace?: string
@@ -83,24 +83,24 @@ export type IgnitePatchInFileOptions = {
   force?: boolean
 }
 
-export type IgniteRNInstallResult = {
+export type SolidtechRNRNInstallResult = {
   exitCode: number
   version: string
   template: string
 }
 
-export type IgnitePluginScreenFile = {
+export type SolidtechRNPluginScreenFile = {
   screen: string
   ancillary: string[]
   title?: string
 }
 
-export type IgniteCopyJob = {
+export type SolidtechRNCopyJob = {
   target: string
   template: string
 }
 
-export type IgniteProjectConfig = {
+export type SolidtechRNProjectConfig = {
   createdWith?: string
   boilerplate?: string
   boilerplateVersion?: string

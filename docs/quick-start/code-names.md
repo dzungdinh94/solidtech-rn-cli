@@ -1,4 +1,4 @@
-# Future IR Ignite Boilerplate Names
+# Future IR SolidtechRN Boilerplate Names
 
 **A** - Andross (Starfox)
 
@@ -24,7 +24,7 @@
 
 **L** - Lich King (World of Warcraft)
 
-**M** - M. Bison || Mecha-Hitler!! (Wolfenstein)  I know this won't happen :)
+**M** - M. Bison || Mecha-Hitler!! (Wolfenstein) I know this won't happen :)
 
 **N** - No Heart (Kingdom Hearts)
 

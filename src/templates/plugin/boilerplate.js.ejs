@@ -2,7 +2,7 @@
  * This file provides an `install` function that should install React Native,
  * copy over any folders and template files, and install any desired plugins.
  * 
- * It's a simpler version of the one found in https://github.com/infinitered/ignite-ir-boilerplate.
+ * It's a simpler version of the one found in https://github.com/solidtechvn/SolidtechRN-ir-boilerplate.
  * Refer to that one to see a more full featured example of what you can do.
  * 
  */
@@ -12,7 +12,7 @@ const REACT_NATIVE_VERSION = '0.42.0'
 /**
  * Let's install.
  *
- * @param {any} context - The gluegun context. Docs: https://infinitered.github.io/gluegun/#/context-api.md
+ * @param {any} context - The gluegun context. Docs: https://solidtechvn.github.io/gluegun/#/context-api.md
  */
 async function install(context) {
   const APP_PATH = process.cwd()
@@ -21,7 +21,7 @@ async function install(context) {
   const {
     filesystem,
     parameters,
-    ignite,
+    SolidtechRN,
     reactNative,
     print,
     system
@@ -54,16 +54,16 @@ async function install(context) {
   const templates = [
     { template: 'index.js.ejs', target: 'index.ios.js' },
     { template: 'index.js.ejs', target: 'index.android.js' },
-    { template: 'ignite/ignite.json', target: 'ignite/ignite.json' }
+    { template: 'SolidtechRN/SolidtechRN.json', target: 'SolidtechRN/SolidtechRN.json' }
   ]
-  await ignite.copyBatch(context, templates, { name: name }, {
+  await SolidtechRN.copyBatch(context, templates, { name: name }, {
     quiet: true,
     directory: `${PLUGIN_PATH}/boilerplate`
   })
   spinner.stop()
 
   // run npm install
-  spinner.text = '▸ installing ignite dependencies'
+  spinner.text = '▸ installing SolidtechRN dependencies'
   spinner.start()
   await system.run('npm i')
   spinner.stop()
@@ -81,12 +81,12 @@ async function install(context) {
     // pass along the debug flag if we're running in that mode
     const debugFlag = parameters.options.debug ? '--debug' : ''
 
-    await system.spawn(`npx ignite-cli add ${__dirname} ${debugFlag} --compiled-build`, { stdio: 'inherit' })
+    await system.spawn(`npx SolidtechRN-cli add ${__dirname} ${debugFlag} --compiled-build`, { stdio: 'inherit' })
 
     // example of another plugin you could install
-    // await system.spawn(`npx ignite-cli add i18n ${debugFlag}`, { stdio: 'inherit' })
+    // await system.spawn(`npx SolidtechRN-cli add i18n ${debugFlag}`, { stdio: 'inherit' })
   } catch (e) {
-    ignite.log(e)
+    SolidtechRN.log(e)
     throw e
   }
 

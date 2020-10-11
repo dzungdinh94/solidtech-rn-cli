@@ -7,17 +7,17 @@ import fetchPluginRegistry from '../lib/fetch-plugin-registry'
  * @param {Object} context The gluegun context.
  */
 module.exports = {
-  description: 'Displays info about a given Ignite plugin.',
+  description: 'Displays info about a given SolidtechRN plugin.',
   run: async function(context) {
     const { print, parameters } = context
     const { colors, newline, info, table, error } = print
     const directory = await fetchPluginRegistry(context)
     const name = validateName(parameters.first, context)
-    const shortName = name.replace(/^(ignite-)/, '')
+    const shortName = name.replace(/^(SolidtechRN-)/, '')
     const plugin = directory[name]
 
     newline()
-    info(colors.highlight(`Ignite Plugin: '${name}'`))
+    info(colors.highlight(`SolidtechRN Plugin: '${name}'`))
     newline()
 
     if (plugin) {
@@ -27,7 +27,7 @@ module.exports = {
     }
 
     newline()
-    info('Install with ' + colors.highlight(`ignite add ${shortName}`))
+    info('Install with ' + colors.highlight(`SolidtechRN add ${shortName}`))
     newline()
   },
 }

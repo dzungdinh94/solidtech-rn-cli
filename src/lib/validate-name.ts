@@ -1,18 +1,18 @@
 import exitCodes from './exit-codes'
-import prependIgnite from './prepend-ignite'
-import { IgniteToolbox } from '../types'
+import prependSolidtechRN from './prepend-solidtechRN'
+import { SolidtechRNToolbox } from '../types'
 
 /**
  * Checks whether a plugin name was given and errors if not.
- * Also prepends `ignite-*` if plugin name didn't include it.
+ * Also prepends `SolidtechRN-*` if plugin name didn't include it.
  */
-export default (pluginName: string, toolbox: IgniteToolbox): string => {
+export default (pluginName: string, toolbox: SolidtechRNToolbox): string => {
   const { strings, print } = toolbox
 
   pluginName = pluginName.toLowerCase()
 
   if (strings.isBlank(pluginName)) {
-    print.info(`ignite plugin new ignite-foo\n`)
+    print.info(`SolidtechRN plugin new SolidtechRN-foo\n`)
     print.error('Plugin name is required')
     process.exit(exitCodes.PLUGIN_NAME)
   }
@@ -23,6 +23,6 @@ export default (pluginName: string, toolbox: IgniteToolbox): string => {
     process.exit(exitCodes.PLUGIN_NAME)
   }
 
-  // Force prepend `ignite-*` to plugin name
-  return prependIgnite(pluginName)
+  // Force prepend `SolidtechRN-*` to plugin name
+  return prependSolidtechRN(pluginName)
 }

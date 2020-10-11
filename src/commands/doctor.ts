@@ -1,20 +1,20 @@
 import { split, last, replace, head, match } from 'ramda'
 import * as os from 'os'
-import { IgniteToolbox } from '../types'
+import { SolidtechRNToolbox } from '../types'
 
 const isWindows = process.platform === 'win32'
 const isMac = process.platform === 'darwin'
 
 module.exports = {
   description: 'Checks your dev environment for dependencies.',
-  run: async function(toolbox: IgniteToolbox) {
+  run: async function(toolbox: SolidtechRNToolbox) {
     // fistful of features
     const {
       filesystem: { separator },
       system: { run, which },
       print: { colors, info, table },
       strings: { padEnd },
-      ignite,
+      solidtechRN,
       runtime,
       meta,
     } = toolbox
@@ -58,17 +58,17 @@ module.exports = {
       [column1('yarn'), column2(yarnVersion), column3(yarnPath)],
     ])
 
-    // -=-=-=- ignite -=-=-=-
-    const ignitePath = which('ignite')
-    const igniteSrcPath = `${meta.src}`
-    const igniteVersion = await run('ignite version', { trim: true })
-    const igniteJson = ignite.loadIgniteConfig()
+    // -=-=-=- solidtechRN -=-=-=-
+    const solidtechRNPath = which('solidtechRN')
+    const solidtechRNSrcPath = `${meta.src}`
+    const solidtechRNVersion = await run('solidtechRN version', { trim: true })
+    const solidtechRNJson = solidtechRN.loadSolidtechRNConfig()
     const installedGenerators = runtime.commands
       .filter(cmd => cmd.name === 'generate')
       .sort((a, b) => (a.commandPath.join(' ') < b.commandPath.join(' ') ? -1 : 1))
       .reduce((acc, k) => {
         k.plugin.commands.map(c => {
-          if (c.plugin.name === k.plugin.name && k.plugin.name !== 'ignite' && c.name !== 'generate') {
+          if (c.plugin.name === k.plugin.name && k.plugin.name !== 'solidtechRN' && c.name !== 'generate') {
             if (!acc[c.name]) {
               acc[c.name] = [k.plugin.name]
             } else {
@@ -78,29 +78,33 @@ module.exports = {
         })
         return acc
       }, {})
-    igniteJson.generators = Object.assign({}, installedGenerators, igniteJson.generators)
+    solidtechRNJson.generators = Object.assign({}, installedGenerators, solidtechRNJson.generators)
 
     info('')
-    info(colors.cyan('Ignite'))
-    const igniteTable = []
-    igniteTable.push([column1('ignite-cli'), column2(igniteVersion), column3(ignitePath)])
-    igniteTable.push([column1('ignite src'), column2(igniteSrcPath.split(separator).pop()), column3(igniteSrcPath)])
-    if (igniteJson) {
-      Object.keys(igniteJson).forEach(k => {
-        const v = typeof igniteJson[k] === 'object' ? JSON.stringify(igniteJson[k]) : igniteJson[k]
+    info(colors.cyan('SolidtechRN'))
+    const solidtechRNTable = []
+    solidtechRNTable.push([column1('solidtechRN-cli'), column2(solidtechRNVersion), column3(solidtechRNPath)])
+    solidtechRNTable.push([
+      column1('solidtechRN src'),
+      column2(solidtechRNSrcPath.split(separator).pop()),
+      column3(solidtechRNSrcPath),
+    ])
+    if (solidtechRNJson) {
+      Object.keys(solidtechRNJson).forEach(k => {
+        const v = typeof solidtechRNJson[k] === 'object' ? JSON.stringify(solidtechRNJson[k]) : solidtechRNJson[k]
         if (k === 'generators') {
-          igniteTable.push([column1(k), column2(' '), column3('')])
-          Object.keys(igniteJson[k]).forEach(t => {
-            const l = Array.isArray(igniteJson[k][t]) ? igniteJson[k][t].join(', ') : igniteJson[k][t]
-            igniteTable.push([column1(''), column2(t), column3(l)])
+          solidtechRNTable.push([column1(k), column2(' '), column3('')])
+          Object.keys(solidtechRNJson[k]).forEach(t => {
+            const l = Array.isArray(solidtechRNJson[k][t]) ? solidtechRNJson[k][t].join(', ') : solidtechRNJson[k][t]
+            solidtechRNTable.push([column1(''), column2(t), column3(l)])
           })
         } else {
-          igniteTable.push([column1(k), column2(v), column3('')])
+          solidtechRNTable.push([column1(k), column2(v), column3('')])
         }
       })
     }
 
-    table(igniteTable)
+    table(solidtechRNTable)
 
     // -=-=-=- android -=-=-=-
     const androidPath = process.env['ANDROID_HOME']

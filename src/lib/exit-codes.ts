@@ -13,12 +13,12 @@ export default {
   GENERIC: 1,
 
   /**
-   * This is not a normal ignite plugin.
+   * This is not a normal solidtechRN plugin.
    */
   PLUGIN_INVALID: 2,
 
   /**
-   * An ignite plugin bombed while installing.
+   * An solidtechRN plugin bombed while installing.
    */
   PLUGIN_INSTALL: 3,
 
@@ -53,9 +53,9 @@ export default {
   REACT_NATIVE_INSTALL: 9,
 
   /**
-   * This is not a compatible Ignite CLI directory.
+   * This is not a compatible SolidtechRN CLI directory.
    */
-  NOT_IGNITE_PROJECT: 10,
+  NOT_solidtechRN_PROJECT: 10,
 
   /**
    * node_modules/react-native already exists.

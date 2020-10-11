@@ -1,6 +1,6 @@
-import { IgniteToolbox } from '../../types'
+import { SolidtechRNToolbox } from '../../types'
 
-export default (toolbox: IgniteToolbox) => {
+export default (toolbox: SolidtechRNToolbox) => {
   const fs = toolbox.filesystem
 
   /**

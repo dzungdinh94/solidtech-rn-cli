@@ -1,13 +1,13 @@
 import exitCodes from './exit-codes'
 import fetchPluginRegistry from './fetch-plugin-registry'
-import { IgniteToolbox } from '../types'
+import { SolidtechRNToolbox } from '../types'
 
 /**
  * Shows a list of known plugins.
  *
  * @param {Object} toolbox The gluegun toolbox.
  */
-export default async function(toolbox: IgniteToolbox) {
+export default async function(toolbox: SolidtechRNToolbox) {
   const { pipe, keys, filter, map } = require('ramda')
 
   const { print, parameters, runtime } = toolbox
@@ -30,10 +30,10 @@ export default async function(toolbox: IgniteToolbox) {
   )(directory)
 
   newline()
-  info(colors.highlight('Ignite Plugins'))
+  info(colors.highlight('SolidtechRN Plugins'))
   newline()
   if (pluginTable.length > 0) {
-    info(colors.muted('Install with `ignite add pluginname` and remove with `ignite remove pluginname`'))
+    info(colors.muted('Install with `SolidtechRN add pluginname` and remove with `SolidtechRN remove pluginname`'))
     newline()
     table(pluginTable)
   } else {

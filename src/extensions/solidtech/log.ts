@@ -1,7 +1,7 @@
 import * as PrettyError from 'pretty-error'
-import { IgniteToolbox } from '../../types'
+import { SolidtechRNToolbox } from '../../types'
 
-export default (toolbox: IgniteToolbox) => {
+export default (toolbox: SolidtechRNToolbox) => {
   /**
    * Prints a debug message to the console.  Used when the user wants to run in --debug.
    *
@@ -14,7 +14,7 @@ export default (toolbox: IgniteToolbox) => {
     if (!parameters.options.debug) return
 
     const date = new Date().toISOString().slice(11, 19)
-    const prefix = print.colors.muted(date) + ' ' + print.colors.magenta('[ignite]')
+    const prefix = print.colors.muted(date) + ' ' + print.colors.magenta('[SolidtechRN]')
 
     if (typeof message === 'object') {
       console.log(`${prefix}`)

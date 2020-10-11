@@ -1,23 +1,23 @@
 import exitCodes from '../lib/exit-codes'
-import isIgniteDirectory from '../lib/is-ignite-directory'
+import isSolidtechRNDirectory from '../lib/is-ignite-directory'
 
 module.exports = {
   description: 'Copy templates as blueprints for this project',
   run: async function(context) {
     // ensure we're in a supported directory
-    if (!isIgniteDirectory(process.cwd())) {
-      context.print.error('The `ignite spork` command must be run in an ignite-compatible directory.')
-      process.exit(exitCodes.NOT_IGNITE_PROJECT)
+    if (!isSolidtechRNDirectory(process.cwd())) {
+      context.print.error('The `solidtechRN spork` command must be run in an solidtechRN-compatible directory.')
+      process.exit(exitCodes.NOT_solidtechRN_PROJECT)
     }
 
     // grab a fist-full of features...
     const { print, filesystem, parameters } = context
     const { warning, success, info } = print
 
-    // ignite spork
+    // solidtechRN spork
     // -> lists all generator plugins (identified in json)
-    const pluginOptions = context.ignite.findIgnitePlugins().reduce((a, k) => {
-      const jsonFile = `${k.directory}/ignite.json`
+    const pluginOptions = context.solidtechRN.findSolidtechRNPlugins().reduce((a, k) => {
+      const jsonFile = `${k.directory}/solidtechRN.json`
       if (filesystem.exists(jsonFile)) {
         const jsonContents = filesystem.read(jsonFile, 'json') || {}
         if (jsonContents.generators) {
@@ -43,7 +43,7 @@ module.exports = {
       selectedPlugin = answer.selectedPlugin
     }
 
-    const directory = context.ignite.findIgnitePlugins().find(x => x.name === selectedPlugin).directory
+    const directory = context.solidtechRN.findSolidtechRNPlugins().find(x => x.name === selectedPlugin).directory
     const choices = filesystem.list(`${directory}/templates`)
 
     // Ask (if necessary)
@@ -66,7 +66,7 @@ module.exports = {
 
     // TODO: This will be wonky if you're not in root of your project
     copyFiles.selectedTemplates.map(template => {
-      const destination = `ignite/Spork/${selectedPlugin}/${template}`
+      const destination = `solidtechRN/Spork/${selectedPlugin}/${template}`
       filesystem.copyAsync(`${directory}/templates/${template}`, destination)
       info(` 🔘 ${destination}`)
     })

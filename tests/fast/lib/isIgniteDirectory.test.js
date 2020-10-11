@@ -1,31 +1,31 @@
-const isIgniteDirectory = require('../../../src/lib/is-ignite-directory').default
+const isSolidtechRNDirectory = require('../../../src/lib/is-SolidtechRN-directory').default
 
 test('bad inputs', () => {
-  expect(isIgniteDirectory()).toBe(false)
-  expect(isIgniteDirectory(null)).toBe(false)
-  expect(isIgniteDirectory(1)).toBe(false)
-  expect(isIgniteDirectory([])).toBe(false)
-  expect(isIgniteDirectory({})).toBe(false)
-  expect(isIgniteDirectory(true)).toBe(false)
+  expect(isSolidtechRNDirectory()).toBe(false)
+  expect(isSolidtechRNDirectory(null)).toBe(false)
+  expect(isSolidtechRNDirectory(1)).toBe(false)
+  expect(isSolidtechRNDirectory([])).toBe(false)
+  expect(isSolidtechRNDirectory({})).toBe(false)
+  expect(isSolidtechRNDirectory(true)).toBe(false)
 })
 
 test('missing directory', () => {
-  expect(isIgniteDirectory('omgnothing')).toBe(false)
+  expect(isSolidtechRNDirectory('omgnothing')).toBe(false)
 })
 
 // test('invalid folder structure', () => {
 //   mockFs({
-//     'missingfile': { 'ignite': {} },
-//     'blank': { 'ignite': { 'ignite.json': '' } },
-//     'string': { 'ignite': { 'ignite.json': 'x' } },
-//     'empty': { 'ignite': { 'ignite.json': '' } },
-//     'array': { 'ignite': { 'ignite.json': [] } },
-//     'number': { 'ignite': { 'ignite.json': 4 } }
+//     'missingfile': { 'SolidtechRN': {} },
+//     'blank': { 'SolidtechRN': { 'SolidtechRN.json': '' } },
+//     'string': { 'SolidtechRN': { 'SolidtechRN.json': 'x' } },
+//     'empty': { 'SolidtechRN': { 'SolidtechRN.json': '' } },
+//     'array': { 'SolidtechRN': { 'SolidtechRN.json': [] } },
+//     'number': { 'SolidtechRN': { 'SolidtechRN.json': 4 } }
 //   })
-//   expect(isIgniteDirectory('missingfile')).toBe(false)
-//   expect(isIgniteDirectory('blank')).toBe(false)
-//   expect(isIgniteDirectory('string')).toBe(false)
-//   expect(isIgniteDirectory('empty')).toBe(false)
-//   expect(isIgniteDirectory('array')).toBe(false)
-//   expect(isIgniteDirectory('number')).toBe(false)
+//   expect(isSolidtechRNDirectory('missingfile')).toBe(false)
+//   expect(isSolidtechRNDirectory('blank')).toBe(false)
+//   expect(isSolidtechRNDirectory('string')).toBe(false)
+//   expect(isSolidtechRNDirectory('empty')).toBe(false)
+//   expect(isSolidtechRNDirectory('array')).toBe(false)
+//   expect(isSolidtechRNDirectory('number')).toBe(false)
 // })

@@ -1,17 +1,17 @@
 const { system, filesystem } = require('gluegun')
 
-const IGNITE = filesystem.path(`${__dirname}/../../../bin/ignite`)
+const SolidtechRN = filesystem.path(`${__dirname}/../../../bin/SolidtechRN`)
 
 test('unknown command', async done => {
-  const result = await system.spawn(`${IGNITE} OMGWTFBBQ`)
+  const result = await system.spawn(`${SolidtechRN} OMGWTFBBQ`)
   expect(result.status).toBe(0)
-  expect(result.stdout.toString()).toContain("ignite 'OMGWTFBBQ' is not a command")
+  expect(result.stdout.toString()).toContain("SolidtechRN 'OMGWTFBBQ' is not a command")
   done()
 })
 
 test('unknown emoji command', async done => {
-  const result = await system.spawn(`${IGNITE} 💩`)
+  const result = await system.spawn(`${SolidtechRN} 💩`)
   expect(result.status).toBe(0)
-  expect(result.stdout.toString()).toContain("ignite '💩' is not a command")
+  expect(result.stdout.toString()).toContain("SolidtechRN '💩' is not a command")
   done()
 })

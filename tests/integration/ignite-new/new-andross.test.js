@@ -2,11 +2,11 @@ const { system, filesystem } = require('gluegun')
 const tempy = require('tempy')
 const stripANSI = require('strip-ansi')
 
-const IGNITE = 'node ' + filesystem.path(`${__dirname}/../../../bin/ignite`)
+const SolidtechRN = 'node ' + filesystem.path(`${__dirname}/../../../bin/SolidtechRN`)
 
 // for local boilerplate testing
-// const IGNITE_BOILERPLATE = filesystem.path(__dirname, '..', '..', '..', '..', 'ignite-andross')
-const IGNITE_BOILERPLATE = 'ignite-andross'
+// const SolidtechRN_BOILERPLATE = filesystem.path(__dirname, '..', '..', '..', '..', 'SolidtechRN-andross')
+const SolidtechRN_BOILERPLATE = 'SolidtechRN-andross'
 
 const APP_NAME = 'Foo'
 
@@ -26,15 +26,15 @@ afterEach(() => {
 })
 
 test('spins up a min app and performs various checks', async done => {
-  // ignite the eternal flame
-  // If you have to ignite it, how is it eternal?
-  const resultANSI = await system.run(`${IGNITE} new ${APP_NAME} --min -b ${IGNITE_BOILERPLATE} --debug`, opts)
+  // SolidtechRN the eternal flame
+  // If you have to SolidtechRN it, how is it eternal?
+  const resultANSI = await system.run(`${SolidtechRN} new ${APP_NAME} --min -b ${SolidtechRN_BOILERPLATE} --debug`, opts)
   const result = stripANSI(resultANSI)
 
   // Check the output
-  expect(result).toContain(`Ignite CLI ignited`)
+  expect(result).toContain(`SolidtechRN CLI SolidtechRNd`)
   expect(result).toContain(`${APP_NAME}`)
-  expect(result).toContain(`https://infinite.red/ignite`)
+  expect(result).toContain(`https://infinite.red/SolidtechRN`)
 
   // Jump into the app directory
   process.chdir(APP_NAME)
@@ -45,25 +45,25 @@ test('spins up a min app and performs various checks', async done => {
   expect(dirs).toContain('android')
   expect(dirs).toContain('App')
 
-  // check the contents of ignite/ignite.json
-  const igniteJSON = filesystem.read(`${process.cwd()}/ignite/ignite.json`)
-  expect(typeof igniteJSON).toBe('string')
-  expect(igniteJSON).toMatch(/"boilerplate": \"/)
+  // check the contents of SolidtechRN/SolidtechRN.json
+  const SolidtechRNJSON = filesystem.read(`${process.cwd()}/SolidtechRN/SolidtechRN.json`)
+  expect(typeof SolidtechRNJSON).toBe('string')
+  expect(SolidtechRNJSON).toMatch(/"boilerplate": \"/)
 
   // check the Containers/App.js file
   const appJS = filesystem.read(`${process.cwd()}/App/Containers/App.js`)
   expect(appJS).toMatch(/class App extends Component {/)
 
-  // run ignite g component
-  await system.run(`${IGNITE} g component Test`, opts)
+  // run SolidtechRN g component
+  await system.run(`${SolidtechRN} g component Test`, opts)
   expect(filesystem.read(`${process.cwd()}/App/Components/Test.js`)).toContain('Test')
 
   // spork a screen and edit it
-  await system.run(`${IGNITE} spork component.ejs`, opts)
-  const sporkedFile = `${process.cwd()}/ignite/Spork/ignite-andross/component.ejs`
+  await system.run(`${SolidtechRN} spork component.ejs`, opts)
+  const sporkedFile = `${process.cwd()}/SolidtechRN/Spork/SolidtechRN-andross/component.ejs`
   await filesystem.write(sporkedFile, 'SPORKED!')
   expect(filesystem.inspect(sporkedFile).type).toBe('file')
-  await system.run(`${IGNITE} generate component Sporkified`, opts)
+  await system.run(`${SolidtechRN} generate component Sporkified`, opts)
   expect(filesystem.read(`${process.cwd()}/App/Components/Sporkified.js`)).toBe('SPORKED!')
 
   done()

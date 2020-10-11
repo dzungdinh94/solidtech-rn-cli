@@ -2,7 +2,7 @@
 
 /* tslint:disable */
 
-// speed up `ignite --version` et al
+// speed up `SolidtechRN --version` et al
 if (['v', 'version', '-v', '--v', '-version', '--version'].includes(process.argv[2])) {
   var contents = require('fs').readFileSync(__dirname + '/../package.json')
   var package = JSON.parse(contents)
@@ -27,5 +27,5 @@ if (devMode && !wantsCompiled) {
 // check if everything is good to go
 require(sourceDir + '/cli/check.js')
 
-// kick off ignite!
+// kick off SolidtechRN!
 require(sourceDir + '/cli/cli').run(process.argv)

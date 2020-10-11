@@ -1,12 +1,12 @@
-import { IgniteToolbox } from '../../types'
+import { SolidtechRNToolbox } from '../../types'
 
-export default (toolbox: IgniteToolbox) => {
+export default (toolbox: SolidtechRNToolbox) => {
   /**
    * Removes a npm-based module from the project.
    */
   async function removeModule(moduleName: string, options: { unlink?: boolean; dev?: boolean } = {}) {
-    const { print, system, ignite } = toolbox
-    const { useYarn } = ignite
+    const { print, system, SolidtechRN } = toolbox
+    const { useYarn } = SolidtechRN
 
     print.info(`    ${print.checkmark} uninstalling ${moduleName}`)
 

@@ -1,6 +1,6 @@
-import { IgniteToolbox, IgnitePatchInFileOptions } from '../../types'
+import { SolidtechRNToolbox, SolidtechRNPatchInFileOptions } from '../../types'
 
-export default (toolbox: IgniteToolbox) => {
+export default (toolbox: SolidtechRNToolbox) => {
   const { filesystem } = toolbox
 
   /**
@@ -10,8 +10,8 @@ export default (toolbox: IgniteToolbox) => {
    *   patchInFile('thing.js', { before: 'bar', insert: 'foo' })
    *
    */
-  function patchInFile(file: string, opts: IgnitePatchInFileOptions) {
-    const { ignite } = toolbox
+  function patchInFile(file: string, opts: SolidtechRNPatchInFileOptions) {
+    const { SolidtechRN } = toolbox
 
     if (!filesystem.exists(file)) return
 
@@ -35,7 +35,7 @@ export default (toolbox: IgniteToolbox) => {
       }
     } else {
       // Insert before/after a particular string
-      ignite.patching.insertInFile(file, opts.before || opts.after, newString, !!opts.after)
+      SolidtechRN.patching.insertInFile(file, opts.before || opts.after, newString, !!opts.after)
     }
   }
 

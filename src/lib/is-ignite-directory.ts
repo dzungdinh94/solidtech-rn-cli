@@ -1,18 +1,18 @@
 /**
- * Is Ignite compatible with the directory we're currently inside?
+ * Is SolidtechRN compatible with the directory we're currently inside?
  */
-export default function isIgniteDirectory(directory: string): boolean {
+export default function isSolidtechRNDirectory(directory: string): boolean {
   const jetpack = require('fs-jetpack')
 
-  // read the ignite config
-  const igniteConfigPath = `${directory}/ignite/ignite.json`
+  // read the solidtechRN config
+  const solidtechRNConfigPath = `${directory}/solidtechRN/solidtechRN.json`
 
   // it must be a file
-  if (jetpack.exists(igniteConfigPath) !== 'file') return false
+  if (jetpack.exists(solidtechRNConfigPath) !== 'file') return false
 
   // let's read it as a JSON file
   try {
-    const contents = jetpack.read(igniteConfigPath, 'json')
+    const contents = jetpack.read(solidtechRNConfigPath, 'json')
     // it needs to be an object
     return typeof contents === 'object'
   } catch (err) {

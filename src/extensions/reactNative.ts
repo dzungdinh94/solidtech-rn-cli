@@ -1,6 +1,6 @@
 import { trim } from 'ramda'
 import exitCodes from '../lib/exit-codes'
-import { IgniteToolbox, IgniteRNInstallResult } from '../types'
+import { SolidtechRNToolbox, SolidtechRNRNInstallResult } from '../types'
 
 // DEPRECATED: Please specify React Native version when invoking install
 // Example: const rnInstall = await reactNative.install({ name, version: '0.42.0' })
@@ -9,22 +9,22 @@ const REACT_NATIVE_VERSION = '0.58.0'
 /**
  * Attach this extension to the toolbox.
  */
-function attach(toolbox: IgniteToolbox) {
+function attach(toolbox: SolidtechRNToolbox) {
   // fist-full o features
-  const { parameters, print, system, filesystem, strings, ignite } = toolbox
-  const { log } = ignite
+  const { parameters, print, system, filesystem, strings, SolidtechRN } = toolbox
+  const { log } = SolidtechRN
 
   /**
    * Installs React Native.
    */
   async function install(
     opts: { name?: string; version?: string; template?: string; skipJest?: boolean; useNpm?: boolean } = {},
-  ): Promise<IgniteRNInstallResult> {
+  ): Promise<SolidtechRNRNInstallResult> {
     //  grab the name & version
     const name = opts.name || parameters.first
     let reactNativeVersion = opts.version || parameters.options['react-native-version']
     if (!reactNativeVersion) {
-      print.warning(`💩  unspecified react native version in ignite cli has been deprecated `)
+      print.warning(`💩  unspecified react native version in SolidtechRN cli has been deprecated `)
       print.warning(`   please use version property in project's boilerplate file to set a react native version`)
       print.warning(`   falling back to react native version: ${REACT_NATIVE_VERSION}`)
       reactNativeVersion = REACT_NATIVE_VERSION
@@ -92,8 +92,8 @@ function attach(toolbox: IgniteToolbox) {
     process.chdir(name)
     log(`changed to directory ${process.cwd()}`)
 
-    // Create ./ignite/plugins/.gitkeep
-    filesystem.write(`${process.cwd()}/ignite/plugins/.gitkeep`, '')
+    // Create ./SolidtechRN/plugins/.gitkeep
+    filesystem.write(`${process.cwd()}/SolidtechRN/plugins/.gitkeep`, '')
 
     return {
       exitCode: exitCodes.OK,

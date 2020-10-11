@@ -1,20 +1,20 @@
-# Ignite CLI Documentation
+# SolidtechRN CLI Documentation
 
 ## Quick Start
 
 - [Getting started](./quick-start/getting-started.md)
-- [Ignite CLI commands](./quick-start/ignite-commands.md)
+- [SolidtechRN CLI commands](./quick-start/SolidtechRN-commands.md)
 - [Using boilerplates](./quick-start/using-boilerplates.md)
 - [Frequently Asked Questions](./quick-start/frequently-asked-questions.md)
 
-## Ignite Andross
+## SolidtechRN Andross
 
-- [Project Structure - Andross](https://github.com/infinitered/ignite-andross#boilerplate-walkthrough)
+- [Project Structure - Andross](https://github.com/solidtechvn/SolidtechRN-andross#boilerplate-walkthrough)
 
-## Ignite Bowser
+## SolidtechRN Bowser
 
-- [Project Structure - Bowser](https://github.com/infinitered/ignite-bowser#quick-start)
-- [About the Stack](https://github.com/infinitered/ignite-bowser#about-the-stack)
+- [Project Structure - Bowser](https://github.com/solidtechvn/SolidtechRN-bowser#quick-start)
+- [About the Stack](https://github.com/solidtechvn/SolidtechRN-bowser#about-the-stack)
 
 ## Advanced
 

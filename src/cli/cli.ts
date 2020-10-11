@@ -3,12 +3,12 @@ import { build, print } from 'gluegun'
 import * as PrettyError from 'pretty-error'
 const pe = new PrettyError()
 
-const buildIgnite = () => {
+const buildSolidtechCLI = () => {
   return build()
-    .brand('ignite')
+    .brand('solidtech-rn')
     .src(`${__dirname}/..`)
     .plugins(`${process.cwd()}/ignite/plugins`)
-    .plugins(`${process.cwd()}/node_modules`, { matching: 'ignite-*', hidden: true })
+    .plugins(`${process.cwd()}/node_modules`, { matching: 'solidtech-rn-*', hidden: true })
     .create()
 }
 
@@ -23,7 +23,7 @@ module.exports = {
     // create a runtime
     let runtime
     try {
-      runtime = buildIgnite()
+      runtime = buildSolidtechCLI()
     } catch (e) {
       console.log(pe.render(e))
       throw e // rethrow

@@ -1,8 +1,8 @@
 import { flatten, replace, reduce, takeLast, split } from 'ramda'
 import * as path from 'path'
-import { IgniteToolbox, IgnitePluginScreenFile } from '../../types'
+import { SolidtechRNToolbox, SolidtechRNPluginScreenFile } from '../../types'
 
-export default (toolbox: IgniteToolbox) => {
+export default (toolbox: SolidtechRNToolbox) => {
   /**
    * Remove example screens from dev screens.
    *
@@ -15,14 +15,14 @@ export default (toolbox: IgniteToolbox) => {
    *   {screen: 'Section.js', ancillary: ['file']},
    * ])
    */
-  async function removePluginScreenExamples(files: IgnitePluginScreenFile[]) {
-    const { filesystem, ignite, print } = toolbox
-    const { ignitePluginPath, patching } = ignite
+  async function removePluginScreenExamples(files: SolidtechRNPluginScreenFile[]) {
+    const { filesystem, SolidtechRN, print } = toolbox
+    const { SolidtechRNPluginPath, patching } = SolidtechRN
 
-    const config = ignite.loadIgniteConfig()
+    const config = SolidtechRN.loadSolidtechRNConfig()
 
-    // consider this being part of toolbox.ignite
-    const pluginName = takeLast(1, split(path.sep, ignitePluginPath()))[0]
+    // consider this being part of toolbox.SolidtechRN
+    const pluginName = takeLast(1, split(path.sep, SolidtechRNPluginPath()))[0]
 
     // currently only supporting 1 form of examples
     if (config.examples === 'classic') {
@@ -41,12 +41,12 @@ export default (toolbox: IgniteToolbox) => {
 
       // delete all files that were inserted
       const delAll = allFiles.map(fileName =>
-        filesystem.removeAsync(`ignite/Examples/Containers/${pluginName}/${fileName}`),
+        filesystem.removeAsync(`SolidtechRN/Examples/Containers/${pluginName}/${fileName}`),
       )
       await Promise.all(delAll)
 
       // delete screen, route, and buttons in PluginExamples (if exists)
-      const destinationPath = `${process.cwd()}/ignite/DevScreens/PluginExamplesScreen.js`
+      const destinationPath = `${process.cwd()}/SolidtechRN/DevScreens/PluginExamplesScreen.js`
       files.map(file => {
         // turn things like "examples/This File-Example.js" into "ThisFileExample"
         // for decent component names

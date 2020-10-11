@@ -1,16 +1,16 @@
-import { IgniteToolbox, IgniteRNInstallResult } from '../types'
-import attachIgnite from './attach-ignite'
+import { SolidtechRNToolbox, SolidtechRNRNInstallResult } from '../types'
+import attachSolidtechRN from './attach-solidtechRN'
 
-export default async function(toolbox: IgniteToolbox) {
+export default async function(toolbox: SolidtechRNToolbox) {
   const { parameters, print, reactNative } = toolbox
   const name = parameters.first
   const spinner = print.spin(`skipping boilerplate`).succeed()
 
   // attempt to install React Native or die trying
-  const rnInstall: IgniteRNInstallResult = await reactNative.install({ name })
+  const rnInstall: SolidtechRNRNInstallResult = await reactNative.install({ name })
   if (rnInstall.exitCode > 0) process.exit(rnInstall.exitCode)
 
-  await attachIgnite(toolbox, { createdWith: 'empty', boilerplateVersion: '' })
+  await attachSolidtechRN(toolbox, { createdWith: 'empty', boilerplateVersion: '' })
 
   spinner.stop()
 
@@ -26,8 +26,8 @@ export default async function(toolbox: IgniteToolbox) {
   print.info(print.colors.yellow(`  cd ${name}`))
   print.info(print.colors.yellow('  npx react-native run-android'))
   print.info('')
-  print.info('To see what ignite can do for you:')
+  print.info('To see what solidtechRN can do for you:')
   print.info(print.colors.yellow(`  cd ${name}`))
-  print.info(print.colors.yellow('  ignite'))
+  print.info(print.colors.yellow('  solidtechRN'))
   print.info('')
 }

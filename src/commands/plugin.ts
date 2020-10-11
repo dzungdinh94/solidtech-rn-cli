@@ -1,6 +1,6 @@
 import exitCodes from '../lib/exit-codes'
 import validateName from '../lib/validate-name'
-import { IgniteToolbox, IgniteCopyJob } from '../types'
+import { SolidtechRNToolbox, SolidtechRNCopyJob } from '../types'
 
 /**
  * Does a walkthrough of questions and returns the answers as an object.
@@ -8,7 +8,7 @@ import { IgniteToolbox, IgniteCopyJob } from '../types'
  * @param {Object} toolbox The gluegun toolbox.
  * @returns {Object} The answers.
  */
-const walkthrough = async (toolbox: IgniteToolbox) => {
+const walkthrough = async (toolbox: SolidtechRNToolbox) => {
   const minOptions = { boilerplate: 'No', generator: 'No' }
   const maxOptions = { boilerplate: 'Yes', generator: 'Yes' }
   if (toolbox.parameters.options.min) {
@@ -28,7 +28,7 @@ const walkthrough = async (toolbox: IgniteToolbox) => {
     },
     {
       name: 'generator',
-      message: 'Will your plugin have a generator command? (e.g. ignite generate <mygenerator> <name>)',
+      message: 'Will your plugin have a generator command? (e.g. solidtechRN generate <mygenerator> <name>)',
       type: 'list',
       choices: ['No', 'Yes'],
     },
@@ -40,10 +40,10 @@ const walkthrough = async (toolbox: IgniteToolbox) => {
  *
  * @param {Object} toolbox The gluegun toolbox.
  */
-const createNewPlugin = async (toolbox: IgniteToolbox) => {
-  const { parameters, print, ignite, strings, meta } = toolbox
+const createNewPlugin = async (toolbox: SolidtechRNToolbox) => {
+  const { parameters, print, solidtechRN, strings, meta } = toolbox
   const pluginName = validateName(parameters.second, toolbox)
-  const name = strings.pascalCase(pluginName.replace(/^ignite-/, ''))
+  const name = strings.pascalCase(pluginName.replace(/^solidtechRN-/, ''))
 
   // Plugin generation walkthrough
   const answers = await walkthrough(toolbox)
@@ -51,10 +51,10 @@ const createNewPlugin = async (toolbox: IgniteToolbox) => {
   // Here we go!
   print.info(`Creating new plugin: ${pluginName}`)
 
-  const copyJobs: IgniteCopyJob[] = [
+  const copyJobs: SolidtechRNCopyJob[] = [
     { template: 'plugin/gitignore', target: `${pluginName}/.gitignore` },
     { template: 'plugin/plugin.js.ejs', target: `${pluginName}/plugin.js` },
-    { template: 'plugin/ignite.json.ejs', target: `${pluginName}/ignite.json` },
+    { template: 'plugin/solidtechRN.json.ejs', target: `${pluginName}/solidtechRN.json` },
     { template: 'plugin/package.json.ejs', target: `${pluginName}/package.json` },
     { template: 'plugin/README.md', target: `${pluginName}/README.md` },
     { template: 'plugin/test/add.js.ejs', target: `${pluginName}/test/add.js` },
@@ -81,11 +81,11 @@ const createNewPlugin = async (toolbox: IgniteToolbox) => {
   }
 
   // copy over the files
-  await ignite.copyBatch(toolbox, copyJobs, {
+  await solidtechRN.copyBatch(toolbox, copyJobs, {
     name,
     pluginName,
     answers,
-    igniteVersion: meta.version(),
+    solidtechRNVersion: meta.version(),
     isGenerator: answers.generator === 'Yes',
   })
 }
@@ -95,25 +95,25 @@ const createNewPlugin = async (toolbox: IgniteToolbox) => {
  *
  * @param {Object} toolbox The gluegun toolbox.
  */
-const showHelp = (toolbox: IgniteToolbox) => {
+const showHelp = (toolbox: SolidtechRNToolbox) => {
   const instructions = `
-Generates an Ignite CLI-compatible plugin in the current folder.
-Generally, you would run this from ./YourApp/ignite/plugins/
+Generates an SolidtechRN CLI-compatible plugin in the current folder.
+Generally, you would run this from ./YourApp/solidtechRN/plugins/
 
 Commands:
-  ignite plugin help
-  ignite plugin new <your-plugin>
+  solidtechRN plugin help
+  solidtechRN plugin new <your-plugin>
 
 Example:
-  ignite plugin new ignite-mobx`
+  solidtechRN plugin new solidtechRN-mobx`
   toolbox.print.info(instructions)
   process.exit(exitCodes.OK)
 }
 
 module.exports = {
   alias: ['p'],
-  description: 'Manages ignite plugins',
-  run: async function(toolbox: IgniteToolbox) {
+  description: 'Manages solidtechRN plugins',
+  run: async function(toolbox: SolidtechRNToolbox) {
     const { parameters } = toolbox
 
     switch (parameters.first) {

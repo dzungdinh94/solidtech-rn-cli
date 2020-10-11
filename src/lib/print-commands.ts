@@ -2,10 +2,10 @@ import { GluegunToolbox } from 'gluegun'
 import { equals, replace } from 'ramda'
 
 function commandAvailableInContext(command): boolean {
-  const isIgniteDir = true
+  const isSolidtechRNDir = true
 
   let availableCommands
-  if (isIgniteDir) {
+  if (isSolidtechRNDir) {
     availableCommands = ['add', 'doctor', 'generate', 'plugin', 'remove', 'spork', 'version']
   } else {
     availableCommands = ['doctor ', 'new', 'plugin', 'version']

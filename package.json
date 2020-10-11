@@ -1,9 +1,9 @@
 {
-  "name": "ignite-cli",
+  "name": "solidtech-rn-cli",
   "version": "3.5.3",
   "description": "An unfair headstart for your React Native apps. Save 2+ weeks of development!",
   "bin": {
-    "ignite": "bin/ignite"
+    "solidtech-rn": "bin/solidtech-rn"
   },
   "preferGlobal": true,
   "scripts": {
@@ -20,15 +20,12 @@
     "ci:publish": "yarn build && yarn semantic-release",
     "semantic-release": "semantic-release"
   },
-  "repository": "infinitered/ignite",
+  "repository": "solidtech-rn-cli",
   "author": {
-    "name": "Infinite Red",
-    "email": "npm@infinite.red",
-    "url": "https://github.com/infinitered/ignite"
+    "name": "Dzung Dinh Nguyen",
+    "email": "dzung.dinh@solidtech.vn",
+    "url": "https://github.com/dzungdinh94/solidtech-rn-cli"
   },
-  "contributors": [
-    "https://github.com/infinitered/ignite/graphs/contributors"
-  ],
   "files": [
     "readme.md",
     "build",

@@ -1,9 +1,9 @@
-import { IgniteNPMPackageParts } from '../types'
+import { SolidtechRNNPMPackageParts } from '../types'
 
 /**
  * Splits an NPM package name into parts.
  */
-export default (versionString: string): IgniteNPMPackageParts => {
+export default (versionString: string): SolidtechRNNPMPackageParts => {
   const scoped = versionString.includes('/')
   let name = versionString
 

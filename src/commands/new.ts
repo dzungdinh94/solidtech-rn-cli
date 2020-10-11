@@ -1,21 +1,21 @@
 import * as path from 'path'
 import { isEmpty, match, not, toLower } from 'ramda'
-import isIgniteDirectory from '../lib/is-ignite-directory'
+import isSolidtechRNDirectory from '../lib/is-ignite-directory'
 import exitCodes from '../lib/exit-codes'
 import addEmptyBoilerplate from '../lib/add-empty-boilerplate'
 import boilerplateInstall from '../lib/boilerplate-install'
-import { IgniteToolbox } from '../types'
+import { SolidtechRNToolbox } from '../types'
 
 /**
- * Creates a new ignite project based on an optional boilerplate.
+ * Creates a new solidtechRN project based on an optional boilerplate.
  */
 module.exports = {
   alias: ['n'],
-  description: 'Generate a new project with Ignite CLI.',
-  run: async function command(toolbox: IgniteToolbox) {
-    const { parameters, strings, print, filesystem, system, ignite, prompt, runtime, meta } = toolbox
+  description: 'Generate a new project with SolidtechRN CLI.',
+  run: async function command(toolbox: SolidtechRNToolbox) {
+    const { parameters, strings, print, filesystem, system, solidtechRN, prompt, runtime, meta } = toolbox
     const { isBlank, upperFirst, camelCase } = strings
-    const { log } = ignite
+    const { log } = solidtechRN
 
     // grab the project name
     const projectName = (parameters.first || '').toString()
@@ -32,8 +32,8 @@ module.exports = {
       print.info(`Info: You provided more than one argument for <projectName>. The first one (${projectName}) will be used and the rest are ignored.`) // prettier-ignore
     }
 
-    // guard against `ignite new ignite`
-    if (toLower(projectName) === 'ignite') {
+    // guard against `solidtechRN new solidtechRN`
+    if (toLower(projectName) === 'solidtechRN') {
       print.error(`Hey...that's my name! Please name your project something other than '${projectName}'.`)
       process.exit(exitCodes.PROJECT_NAME)
     }
@@ -62,15 +62,15 @@ module.exports = {
     }
 
     // ensure we're in a supported directory
-    if (isIgniteDirectory(process.cwd())) {
-      print.error('The `ignite new` command cannot be run within an already ignited project.')
-      process.exit(exitCodes.NOT_IGNITE_PROJECT)
+    if (isSolidtechRNDirectory(process.cwd())) {
+      print.error('The `solidtechRN new` command cannot be run within an already solidtechRNd project.')
+      process.exit(exitCodes.NOT_solidtechRN_PROJECT)
     }
 
     // prevent installing when node_modules/react-native exists
     if (filesystem.exists('node_modules/react-native')) {
       print.error(
-        'The `ignite new` command cannot be run within a directory with `node_modules/react-native` installed.',
+        'The `solidtechRN new` command cannot be run within a directory with `node_modules/react-native` installed.',
       )
       print.error('Try installing from a directory without a `node_modules` directory.')
       process.exit(exitCodes.EXISTING_REACT_NATIVE)
@@ -120,14 +120,14 @@ module.exports = {
     const boilerplates = [
       { name: '---', message: 'Infinite Red boilerplates', value: 'sep', role: 'separator' },
       {
-        name: 'ignite-bowser',
+        name: 'solidtechRN-bowser',
         message: 'Bowser (React Navigation, MobX State Tree, & TypeScript) - RECOMMENDED',
       },
-      { name: 'ignite-andross', message: 'Andross (React Navigation, Redux, & Redux Saga)' },
+      { name: 'solidtechRN-andross', message: 'Andross (React Navigation, Redux, & Redux Saga)' },
       { name: '---', message: 'Third-party boilerplates', value: 'sep', role: 'separator' },
       {
-        name: 'ignite-jhipster',
-        message: 'JHipster (https://github.com/ruddell/ignite-jhipster)',
+        name: 'solidtechRN-jhipster',
+        message: 'JHipster (https://github.com/ruddell/solidtechRN-jhipster)',
       },
     ]
     if (!boilerplateName) {
@@ -162,9 +162,9 @@ module.exports = {
 
     // make a temporary package.json file so node stops walking up the directories
     filesystem.write('package.json', {
-      name: 'ignite-shim',
+      name: 'solidtechRN-shim',
       description: 'A temporary package.json created to prevent node from wandering too far.',
-      repository: 'infinitered/ignite',
+      repository: 'solidtechvn/solidtechRN',
       license: 'MIT',
     })
 
@@ -184,7 +184,7 @@ module.exports = {
     // move everything that's 1 deep back up to here
     const deepFiles = filesystem.list(deepFolder) || []
     if (parameters.options.debug) {
-      ignite.log('files that will be moved to main folder:')
+      solidtechRN.log('files that will be moved to main folder:')
       console.log(deepFiles)
     }
 
@@ -197,7 +197,7 @@ module.exports = {
     filesystem.remove(deepFolder)
 
     // run yarn or NPM one last time
-    const yarnOrNPM = ignite.useYarn ? 'yarn' : 'npm i'
+    const yarnOrNPM = solidtechRN.useYarn ? 'yarn' : 'npm i'
     log(`running ${yarnOrNPM} one last time...`)
     let spinner = print.spin(`running ${yarnOrNPM} one last time...`)
     await system.run(yarnOrNPM)
@@ -206,9 +206,9 @@ module.exports = {
     // initialize git if it isn't already initialized
     if (!parameters.options['skip-git'] && !filesystem.exists('./.git') && system.which('git')) {
       spinner = print.spin('setting up source control with git')
-      const gitCommand = `git init . && git add -A && git commit -m "Initial commit\n\nIgnite CLI version ${meta.version()}"`
-      ignite.log('setting up git repo with command:')
-      ignite.log(gitCommand)
+      const gitCommand = `git init . && git add -A && git commit -m "Initial commit\n\nSolidtechRN CLI version ${meta.version()}"`
+      solidtechRN.log('setting up git repo with command:')
+      solidtechRN.log(gitCommand)
       await system.run(gitCommand)
       spinner.succeed(`configured git`)
     }

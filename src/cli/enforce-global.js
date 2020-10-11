@@ -32,7 +32,7 @@ function defaultVersionMatcher(raw) {
 }
 
 /**
- * Verifies the dependency which is installed is compatible with ignite.
+ * Verifies the dependency which is installed is compatible with SolidtechRN.
  *
  * @param  {any}      opts                The options to enforce.
  * @param  {boolean}  opts.optional       Is this an optional dependency?
@@ -60,7 +60,7 @@ function enforce(opts = {}) {
    * @param {string} installedVersion - current version if installed.
    */
   function printNotMetMessage(installedVersion) {
-    console.log('Ignite CLI requires ' + packageName + ' ' + range + ' to be installed.')
+    console.log('SolidtechRN CLI requires ' + packageName + ' ' + range + ' to be installed.')
     if (installedVersion) {
       console.log('')
       console.log('You currently have ' + installedVersion + ' installed.')

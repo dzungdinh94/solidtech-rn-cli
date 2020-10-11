@@ -4,7 +4,7 @@ import printCommands from '../lib/print-commands'
 module.exports = {
   dashed: true,
   alias: ['h'],
-  description: 'Displays Ignite CLI help',
+  description: 'Displays SolidtechRN CLI help',
   run: async (toolbox: GluegunToolbox) => {
     const {
       print: { info, colors },
@@ -14,7 +14,7 @@ module.exports = {
     require('../brand/header')()
     printCommands(toolbox)
     info('')
-    info(colors.magenta('If you need additional help, join our Slack at http://community.infinite.red'))
+    info(colors.magenta('If you need additional help, feel free contact us https://solidtech.vn/contact'))
     info('')
   },
 }

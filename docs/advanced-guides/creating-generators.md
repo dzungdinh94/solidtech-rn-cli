@@ -1,13 +1,13 @@
-# Creating an Ignite CLI Generator
+# Creating an SolidtechRN CLI Generator
 
-This document will walk you through creating your own Ignite CLI generator. A generator will allow your users to create customized files from templates by using the `ignite generate` command on the command line.
+This document will walk you through creating your own SolidtechRN CLI generator. A generator will allow your users to create customized files from templates by using the `SolidtechRN generate` command on the command line.
 
-A generator is just a [Gluegun](https://github.com/infinitered/gluegun)-powered command in the folder `commands/generate`.
+A generator is just a [Gluegun](https://github.com/solidtechvn/gluegun)-powered command in the folder `commands/generate`.
 
 Since generators are plugins, you'll start out creating them the same as you would any [plugin](./creating-plugins.md), with
 
 ```sh
-$ ignite plugin new {generator name}
+$ SolidtechRN plugin new {generator name}
 ```
 
 You should answer "yes" to
@@ -16,7 +16,7 @@ You should answer "yes" to
 
 ## Setting up the generator
 
-Go into the directory Ignite CLI created.
+Go into the directory SolidtechRN CLI created.
 
 ```sh
 $ cd {generator name}
@@ -75,8 +75,8 @@ get creative and do cool things with your own generators!
 
 ## Gluegun
 
-The [Gluegun](https://github.com/infinitered/gluegun) toolkit can be very helpful in writing generators. `Gluegun` is a tool for building CLIs (we mention it in the Creating Plugins guide).
+The [Gluegun](https://github.com/solidtechvn/gluegun) toolkit can be very helpful in writing generators. `Gluegun` is a tool for building CLIs (we mention it in the Creating Plugins guide).
 
 Gluegun's included libraries handle templating, filesystem operations, command line handling, copy and paste, and more. These features can make writing generators a breeze.
 
-For more information, check out the [Gluegun repo](https://github.com/infinitered/gluegun).
+For more information, check out the [Gluegun repo](https://github.com/solidtechvn/gluegun).

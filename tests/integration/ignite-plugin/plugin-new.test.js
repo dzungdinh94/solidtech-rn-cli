@@ -2,7 +2,7 @@ const { system, filesystem } = require('gluegun')
 const tempy = require('tempy')
 const stripANSI = require('strip-ansi')
 
-const IGNITE = 'node ' + filesystem.path(`${__dirname}/../../../bin/ignite`)
+const SolidtechRN = 'node ' + filesystem.path(`${__dirname}/../../../bin/SolidtechRN`)
 
 const PLUGIN_NAME = 'foo'
 
@@ -20,13 +20,13 @@ afterEach(() => {
   process.chdir(originalDir)
 })
 
-test('spins up an Ignite plugin with min options and performs various checks', async done => {
-  const resultANSI = await system.run(`${IGNITE} plugin new ${PLUGIN_NAME} --min`, opts)
+test('spins up an SolidtechRN plugin with min options and performs various checks', async done => {
+  const resultANSI = await system.run(`${SolidtechRN} plugin new ${PLUGIN_NAME} --min`, opts)
   const result = stripANSI(resultANSI)
 
-  expect(result).toContain(`Creating new plugin: ignite-${PLUGIN_NAME}`)
+  expect(result).toContain(`Creating new plugin: SolidtechRN-${PLUGIN_NAME}`)
 
-  process.chdir(`./ignite-${PLUGIN_NAME}`)
+  process.chdir(`./SolidtechRN-${PLUGIN_NAME}`)
   const dirs = filesystem.subdirectories('.')
   expect(dirs).toContain('test')
   expect(dirs).not.toContain('boilerplate')
@@ -38,13 +38,13 @@ test('spins up an Ignite plugin with min options and performs various checks', a
   done()
 })
 
-test('spins up an Ignite plugin with max options and performs various checks', async done => {
-  const resultANSI = await system.run(`${IGNITE} plugin new ${PLUGIN_NAME} --max`, opts)
+test('spins up an SolidtechRN plugin with max options and performs various checks', async done => {
+  const resultANSI = await system.run(`${SolidtechRN} plugin new ${PLUGIN_NAME} --max`, opts)
   const result = stripANSI(resultANSI)
 
-  expect(result).toContain(`Creating new plugin: ignite-${PLUGIN_NAME}`)
+  expect(result).toContain(`Creating new plugin: SolidtechRN-${PLUGIN_NAME}`)
 
-  process.chdir(`./ignite-${PLUGIN_NAME}`)
+  process.chdir(`./SolidtechRN-${PLUGIN_NAME}`)
   const dirs = filesystem.subdirectories('.')
   expect(dirs).toContain('test')
   expect(dirs).toContain('boilerplate')

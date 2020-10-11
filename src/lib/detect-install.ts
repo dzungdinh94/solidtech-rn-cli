@@ -1,5 +1,5 @@
-import { IgniteToolbox, IgniteDetectInstall } from '../types'
-import prependIgnite from './prepend-ignite'
+import { SolidtechRNToolbox, SolidtechRNDetectInstall } from '../types'
+import prependSolidtechRN from './prepend-solidtechRN'
 import packageExtract from './package-extract'
 import * as path from 'path'
 
@@ -14,21 +14,21 @@ const GIT_REGEX = /^(git|ssh|https)(?:@|:\/\/)(?:[github|gitlab|bitbucket]+[.\w]
  *   2. a plugin which lives in a relative or absolute path
  *   3. otherwise let npm hook us up
  */
-export default function detectInstall(plugin: string, toolbox: IgniteToolbox): IgniteDetectInstall {
+export default function detectInstall(plugin: string, toolbox: SolidtechRNToolbox): SolidtechRNDetectInstall {
   // grab some gluegun goodies
-  const { filesystem, ignite } = toolbox
+  const { filesystem, solidtechRN } = toolbox
   const sep = path.sep // why isn't filesystem.separator working here?
 
   // grab the plugin overrides
-  const pluginOverrides = (ignite && ignite.pluginOverrides) || []
+  const pluginOverrides = (solidtechRN && solidtechRN.pluginOverrides) || []
 
   /**
-   * Is this a valid ignite plugin?
+   * Is this a valid solidtechRN plugin?
    *
    * @param  {string} candidate - The potential directory to check.
    * @return {boolean}          - True if this is valid; otherwise false.
    */
-  function isValidIgnitePluginDirectory(candidate: string): boolean {
+  function isValidSolidtechRNPluginDirectory(candidate: string): boolean {
     const isDir = filesystem.exists(candidate) === 'dir'
     const packageIsFile = filesystem.exists(`${candidate}${sep}package.json`) === 'file'
     return isDir && packageIsFile
@@ -60,7 +60,7 @@ export default function detectInstall(plugin: string, toolbox: IgniteToolbox): I
   } else {
     // extract the package name and (optionally) version
     let { name, scoped, version } = packageExtract(plugin)
-    packageName = scoped ? name : prependIgnite(name)
+    packageName = scoped ? name : prependSolidtechRN(name)
     packageVersion = version
   }
 
@@ -80,7 +80,7 @@ export default function detectInstall(plugin: string, toolbox: IgniteToolbox): I
   if (pluginOverrides.length > 0) {
     // look for the plugin into one of our override paths
     const foundPath = pluginOverrides.find(overridePath =>
-      isValidIgnitePluginDirectory(`${overridePath}${sep}${packageName}`),
+      isValidSolidtechRNPluginDirectory(`${overridePath}${sep}${packageName}`),
     )
 
     // did we find it?
@@ -96,7 +96,7 @@ export default function detectInstall(plugin: string, toolbox: IgniteToolbox): I
   }
 
   // is this a directory?
-  if (isValidIgnitePluginDirectory(packageName)) {
+  if (isValidSolidtechRNPluginDirectory(packageName)) {
     const json = filesystem.read(`${packageName}/package.json`, 'json') || {}
     return {
       directory: packageName,

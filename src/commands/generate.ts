@@ -1,4 +1,4 @@
-import { IgniteToolbox } from '../types'
+import { SolidtechRNToolbox } from '../types'
 import { map, pipe, values } from 'ramda'
 import { GluegunCommand } from 'gluegun'
 
@@ -8,7 +8,7 @@ import { GluegunCommand } from 'gluegun'
 module.exports = {
   description: 'Generates some files.',
   alias: ['g'],
-  run: async function(toolbox: IgniteToolbox) {
+  run: async function(toolbox: SolidtechRNToolbox) {
     // grab some features
     const { print, runtime } = toolbox
     const {
@@ -33,7 +33,7 @@ module.exports = {
     const footer = () => {
       newline()
       info(muted('  --------------------------------------------------------------------------'))
-      info(muted(`  Check out ${white('https://github.com/infinitered/ignite')} for more information`)) // prettier-ignore
+      info(muted(`  Check out ${white('https://github.com/solidtechvn/solidtechRN')} for more information`)) // prettier-ignore
       info(muted('  or join our Slack community at http://community.infinite.red.'))
     }
 
@@ -50,7 +50,7 @@ module.exports = {
     }
 
     // print out all the generators
-    info(`✨ Type ${bold('ignite generate')} ${yellow('________')} to run one of these generators:\n`)
+    info(`✨ Type ${bold('solidtechRN generate')} ${yellow('________')} to run one of these generators:\n`)
 
     // turn into data we can print
     const data = pipe(

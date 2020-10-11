@@ -2,11 +2,11 @@ const { system, filesystem } = require('gluegun')
 const tempy = require('tempy')
 const stripANSI = require('strip-ansi')
 
-const IGNITE = 'node ' + filesystem.path(`${__dirname}/../../../bin/ignite`)
+const SolidtechRN = 'node ' + filesystem.path(`${__dirname}/../../../bin/SolidtechRN`)
 
 // for local boilerplate testing
-// const IGNITE_BOILERPLATE = filesystem.path(__dirname, '..', '..', '..', '..', 'ignite-bowser')
-const IGNITE_BOILERPLATE = 'ignite-bowser'
+// const SolidtechRN_BOILERPLATE = filesystem.path(__dirname, '..', '..', '..', '..', 'SolidtechRN-bowser')
+const SolidtechRN_BOILERPLATE = 'SolidtechRN-bowser'
 
 const APP_NAME = 'Foo'
 
@@ -26,15 +26,15 @@ afterEach(() => {
 
 test('spins up a Bowser app and performs various checks', async done => {
   const resultANSI = await system.run(
-    `${IGNITE} new ${APP_NAME} --detox -b ${IGNITE_BOILERPLATE} --debug --no-expo`,
+    `${SolidtechRN} new ${APP_NAME} --detox -b ${SolidtechRN_BOILERPLATE} --debug --no-expo`,
     opts,
   )
   const result = stripANSI(resultANSI)
 
   // Check the output
-  expect(result).toContain(`Ignite CLI ignited`)
+  expect(result).toContain(`SolidtechRN CLI SolidtechRNd`)
   expect(result).toContain(`${APP_NAME}`)
-  expect(result).toContain(`https://infinite.red/ignite`)
+  expect(result).toContain(`https://infinite.red/SolidtechRN`)
 
   // Jump into the app directory
   process.chdir(APP_NAME)
@@ -45,27 +45,27 @@ test('spins up a Bowser app and performs various checks', async done => {
   expect(dirs).toContain('android')
   expect(dirs).toContain('app')
 
-  // check the contents of ignite/ignite.json
-  const igniteJSON = filesystem.read(`${process.cwd()}/ignite/ignite.json`)
-  expect(typeof igniteJSON).toBe('string')
-  expect(igniteJSON).toMatch(/"boilerplate": \"/)
+  // check the contents of SolidtechRN/SolidtechRN.json
+  const SolidtechRNJSON = filesystem.read(`${process.cwd()}/SolidtechRN/SolidtechRN.json`)
+  expect(typeof SolidtechRNJSON).toBe('string')
+  expect(SolidtechRNJSON).toMatch(/"boilerplate": \"/)
 
   // check the app.js file
   const appJS = filesystem.read(`${process.cwd()}/app/app.tsx`)
   expect(appJS).toContain('export default App')
 
   // run generators
-  await system.run(`${IGNITE} g component test --no-observer`, opts)
+  await system.run(`${SolidtechRN} g component test --no-observer`, opts)
   expect(filesystem.list(`${process.cwd()}/app/components`)).toContain('test')
   expect(filesystem.read(`${process.cwd()}/app/components/test/test.tsx`)).toContain(
     'export function Test(props: TestProps) {',
   )
 
-  await system.run(`${IGNITE} g model mtest`, opts)
+  await system.run(`${SolidtechRN} g model mtest`, opts)
   expect(filesystem.list(`${process.cwd()}/app/models`)).toContain('mtest')
   expect(filesystem.read(`${process.cwd()}/app/models/mtest/mtest.ts`)).toContain('export const MtestModel')
 
-  await system.run(`${IGNITE} g screen bowser`, opts)
+  await system.run(`${SolidtechRN} g screen bowser`, opts)
   expect(filesystem.list(`${process.cwd()}/app/screens/bowser-screen`)).toContain('bowser-screen.tsx')
   expect(filesystem.read(`${process.cwd()}/app/screens/bowser-screen/bowser-screen.tsx`)).toContain(
     'export const BowserScreen',
