@@ -7,7 +7,7 @@ const buildSolidtechCLI = () => {
   return build()
     .brand('solidtech-rn')
     .src(`${__dirname}/..`)
-    .plugins(`${process.cwd()}/ignite/plugins`)
+    .plugins(`${process.cwd()}/solidtech-rn/plugins`)
     .plugins(`${process.cwd()}/node_modules`, { matching: 'solidtech-rn-*', hidden: true })
     .create()
 }

@@ -7,14 +7,14 @@ import findPluginFile from '../lib/find-plugin-file'
 import exitCodes from '../lib/exit-codes'
 
 /**
- * Removes the solidtechRN plugin.
+ * Removes the ignite plugin.
  */
-const rollbackFailedSolidtechRNPlugin = async (moduleName: string, toolbox: SolidtechRNToolbox) => {
-  const { print, system, solidtechRN } = toolbox
+const rollbackFailedIgnitePlugin = async (moduleName: string, toolbox: SolidtechRNToolbox) => {
+  const { print, system, ignite } = toolbox
 
   print.warning('Rolling back...run with --debug to see more info')
 
-  if (solidtechRN.useYarn) {
+  if (ignite.useYarn) {
     await system.run(`yarn remove ${moduleName} --dev`)
   } else {
     await system.run(`npm rm ${moduleName} --save-dev`)
@@ -22,29 +22,29 @@ const rollbackFailedSolidtechRNPlugin = async (moduleName: string, toolbox: Soli
 }
 
 module.exports = {
-  description: 'Adds a plugin to your SolidtechRNd project',
+  description: 'Adds a plugin to your Ignited project',
   alias: ['a'],
   run: async function(toolbox: SolidtechRNToolbox) {
     // grab a fist-full of features...
-    const { print, filesystem, prompt, solidtechRN, parameters, strings } = toolbox
-    const { log } = solidtechRN
+    const { print, filesystem, prompt, ignite, parameters, strings } = toolbox
+    const { log } = ignite
 
     const perfStart = new Date().getTime()
 
     log('running add command')
-    const config = solidtechRN.loadSolidtechRNConfig()
+    const config = ignite.loadIgniteConfig()
     const currentGenerators = config.generators || {}
 
     // the thing we're trying to install
     if (strings.isBlank(parameters.first)) {
-      const instructions = `An solidtechRN plugin is required.
+      const instructions = `An ignite plugin is required.
 
 Examples:
-  solidtechRN add i18n
-  solidtechRN add vector-icons
-  solidtechRN add maps
-  solidtechRN add gantman/solidtechRN-react-native-config
-  solidtechRN add /path/to/plugin/you/are/building`
+  ignite add i18n
+  ignite add vector-icons
+  ignite add maps
+  ignite add gantman/ignite-react-native-config
+  ignite add /path/to/plugin/you/are/building`
       print.info(instructions)
       process.exit(exitCodes.OK)
     }
@@ -56,7 +56,7 @@ Examples:
 
     log(`installing ${modulePath} from source ${specs.type}`)
 
-    // import the solidtechRN plugin node module
+    // import the ignite plugin node module
     // const spinner = spin(`adding ${print.colors.cyan(moduleName)}`)
     const spinner = print.spin('')
 
@@ -66,10 +66,10 @@ Examples:
       process.exit(exitCode)
     }
 
-    // optionally load some configuration from the solidtechRN.json from the plugin.
-    const solidtechRNPluginConfigPath = `${modulePath}/solidtechRN.json`
-    const newConfig: SolidtechRNConfig = filesystem.exists(solidtechRNPluginConfigPath)
-      ? filesystem.read(solidtechRNPluginConfigPath, 'json')
+    // optionally load some configuration from the ignite.json from the plugin.
+    const ignitePluginConfigPath = `${modulePath}/ignite.json`
+    const newConfig: SolidtechRNConfig = filesystem.exists(ignitePluginConfigPath)
+      ? filesystem.read(ignitePluginConfigPath, 'json')
       : {}
 
     const proposedGenerators = (newConfig.generators || []).reduce((acc, k) => {
@@ -86,7 +86,7 @@ Examples:
       const ok = await prompt.confirm('You ok with that?')
       // if they refuse, then npm/yarn uninstall
       if (!ok) {
-        await rollbackFailedSolidtechRNPlugin(moduleName, toolbox)
+        await rollbackFailedIgnitePlugin(moduleName, toolbox)
         process.exit(exitCodes.OK)
       }
       spinner.text = `adding ${print.colors.cyan(moduleName)}`
@@ -97,8 +97,8 @@ Examples:
     try {
       let pluginFile: string = findPluginFile(toolbox, modulePath)
       if (pluginFile) {
-        // bring the solidtechRN plugin to life
-        log(`requiring solidtechRN plugin from ${modulePath}`)
+        // bring the ignite plugin to life
+        log(`requiring ignite plugin from ${modulePath}`)
         const pluginModule = require(pluginFile)
 
         if (!pluginModule.hasOwnProperty('add') || !pluginModule.hasOwnProperty('remove')) {
@@ -106,20 +106,20 @@ Examples:
           process.exit(exitCodes.PLUGIN_INVALID)
         }
 
-        // set the path to the current running solidtechRN plugin
-        solidtechRN.setSolidtechRNPluginPath(modulePath)
+        // set the path to the current running ignite plugin
+        ignite.setIgnitePluginPath(modulePath)
 
         // now let's try to run it
         try {
-          // save new solidtechRN config if something changed
+          // save new ignite config if something changed
           if (proposedGenerators !== {}) {
             const combinedGenerators = Object.assign({}, currentGenerators, proposedGenerators)
-            const updatedConfig = R.assoc('generators', combinedGenerators, solidtechRN.loadSolidtechRNConfig())
-            solidtechRN.saveSolidtechRNConfig(updatedConfig)
+            const updatedConfig = R.assoc('generators', combinedGenerators, ignite.loadIgniteConfig())
+            ignite.saveIgniteConfig(updatedConfig)
           }
 
           spinner.stop()
-          log(`running add() on solidtechRN plugin`)
+          log(`running add() on ignite plugin`)
           await pluginModule.add(toolbox)
 
           const perfDuration = parseInt(((new Date().getTime() - perfStart) / 10).toString(), 10) / 100
@@ -144,7 +144,7 @@ Examples:
     } catch (err) {
       // we couldn't require the plugin, it probably has some nasty js!
       spinner.fail('problem loading the plugin JS')
-      await rollbackFailedSolidtechRNPlugin(moduleName, toolbox)
+      await rollbackFailedIgnitePlugin(moduleName, toolbox)
       log(err)
       process.exit(exitCodes.PLUGIN_INVALID)
     }

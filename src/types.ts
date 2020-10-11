@@ -1,14 +1,14 @@
 import { GluegunToolbox, GluegunCommand } from 'gluegun'
 
 export type SolidtechRNTools = {
-  solidtechRNPluginPath: Function
-  setSolidtechRNPluginPath: Function
+  ignitePluginPath: Function
+  setIgnitePluginPath: Function
   useYarn: boolean
-  loadSolidtechRNConfig: Function
-  saveSolidtechRNConfig: Function
-  setSolidtechRNConfig: Function
-  removeSolidtechRNConfig: Function
-  findSolidtechRNPlugins: Function
+  loadIgniteConfig: Function
+  saveIgniteConfig: Function
+  setIgniteConfig: Function
+  removeIgniteConfig: Function
+  findIgnitePlugins: Function
   addModule: Function
   addAndroidPermission: Function
   removeModule: Function
@@ -26,7 +26,6 @@ export type SolidtechRNTools = {
   boilerplateName: () => string | void
   boilerplateVersion: () => string | void
   patching: {
-    prependToFile
     insertInFile
     replaceInFile
     isInFile
@@ -44,7 +43,7 @@ export type ReactNativeTools = {
 }
 
 export interface SolidtechRNToolbox extends GluegunToolbox {
-  solidtechRN: SolidtechRNTools
+  ignite: SolidtechRNTools
   reactNative: ReactNativeTools
 }
 

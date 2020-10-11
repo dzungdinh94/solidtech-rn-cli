@@ -7,7 +7,7 @@ import { SolidtechRNToolbox } from '../types'
  */
 export default async function(toolbox: SolidtechRNToolbox): Promise<any> {
   const api = toolbox.http.create({
-    baseURL: 'https://raw.githubusercontent.com/solidtechvn/solidtechRN-plugins',
+    baseURL: 'https://raw.githubusercontent.com/solidtechvn/ignite-plugins',
   })
 
   const { data } = await api.get('/master/registry.json')

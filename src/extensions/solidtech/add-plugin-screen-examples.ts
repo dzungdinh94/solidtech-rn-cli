@@ -14,12 +14,12 @@ export default (toolbox: SolidtechRNToolbox) => {
    * ])
    */
   async function addPluginScreenExamples(files: SolidtechRNPluginScreenFile[], props = Object) {
-    const { filesystem, SolidtechRN, print, template } = toolbox
-    const { SolidtechRNPluginPath } = SolidtechRN
+    const { filesystem, ignite, print, template } = toolbox
+    const { ignitePluginPath } = ignite
 
-    const config = SolidtechRN.loadSolidtechRNConfig()
+    const config = ignite.loadIgniteConfig()
     // consider this being part of toolbox.SolidtechRN
-    const pluginName = takeLast(1, split(path.sep, SolidtechRNPluginPath()))[0]
+    const pluginName = takeLast(1, split(path.sep, ignitePluginPath()))[0]
 
     // currently only supporting 1 form of examples
     if (config.examples === 'classic') {
@@ -37,7 +37,7 @@ export default (toolbox: SolidtechRNToolbox) => {
       )
 
       // generate stamped copy of all template files
-      const templatePath = SolidtechRNPluginPath() ? `${SolidtechRNPluginPath()}/templates` : `templates`
+      const templatePath = ignitePluginPath() ? `${ignitePluginPath()}/templates` : `templates`
       const allFilesGen = allFiles.map(fileName => {
         let templateFile
         if (fileName.endsWith('.ejs')) {
@@ -70,25 +70,25 @@ export default (toolbox: SolidtechRNToolbox) => {
 
         if (filesystem.exists(destinationPath)) {
           // make sure we have RoundedButton
-          SolidtechRN.patchInFile(destinationPath, {
+          ignite.patchInFile(destinationPath, {
             insert: `import RoundedButton from '../../App/Components/RoundedButton'`,
             after: 'import ExamplesRegistry',
           })
 
           // insert screen import
-          SolidtechRN.patchInFile(destinationPath, {
+          ignite.patchInFile(destinationPath, {
             after: 'import ExamplesRegistry',
             insert: `import ${componentName} from '../Examples/Containers/${pluginName}/${file.screen}'`,
           })
 
           // insert screen route
-          SolidtechRN.patchInFile(destinationPath, {
+          ignite.patchInFile(destinationPath, {
             insert: `  ${componentName}: {screen: ${componentName}, navigationOptions: {header: {visible: true}}},`,
             before: 'screen: PluginExamplesScreen',
           })
 
           // insert launch button
-          SolidtechRN.patchInFile(destinationPath, {
+          ignite.patchInFile(destinationPath, {
             after: 'styles.screenButtons',
             insert: `
             <RoundedButton onPress={() => this.props.navigation.navigate('${componentName}')}>

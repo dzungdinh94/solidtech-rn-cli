@@ -1,50 +1,50 @@
 import { dissoc } from 'ramda'
 import { SolidtechRNToolbox, SolidtechRNProjectConfig } from '../../types'
 
-const SolidtechRNConfigFilename = `./SolidtechRN/SolidtechRN.json`
+const IgniteConfigFilename = `./Ignite/Ignite.json`
 
 export default (toolbox: SolidtechRNToolbox) => {
   const { filesystem } = toolbox
 
   /**
-   * Reads the contents of the SolidtechRN/SolidtechRN.json configuration.
+   * Reads the contents of the Ignite/Ignite.json configuration.
    */
-  function loadSolidtechRNConfig(): SolidtechRNProjectConfig {
-    return filesystem.exists(SolidtechRNConfigFilename) ? filesystem.read(SolidtechRNConfigFilename, 'json') || {} : {}
+  function loadIgniteConfig(): SolidtechRNProjectConfig {
+    return filesystem.exists(IgniteConfigFilename) ? filesystem.read(IgniteConfigFilename, 'json') || {} : {}
   }
 
   /**
-   * Saves a new SolidtechRN config file.
+   * Saves a new Ignite config file.
    */
-  function saveSolidtechRNConfig(config: SolidtechRNProjectConfig = {}) {
-    filesystem.write(SolidtechRNConfigFilename, config, { jsonIndent: 2 })
+  function saveIgniteConfig(config: SolidtechRNProjectConfig = {}) {
+    filesystem.write(IgniteConfigFilename, config, { jsonIndent: 2 })
   }
 
   /**
-   * Sets an SolidtechRN config setting. Takes an object or a key/value pair.
+   * Sets an Ignite config setting. Takes an object or a key/value pair.
    */
-  function setSolidtechRNConfig(keyOrObject: string | object, value?: string) {
-    const SolidtechRNConfig = loadSolidtechRNConfig()
+  function setIgniteConfig(keyOrObject: string | object, value?: string) {
+    const IgniteConfig = loadIgniteConfig()
     if (typeof keyOrObject === 'string') {
-      SolidtechRNConfig[keyOrObject] = value
+      IgniteConfig[keyOrObject] = value
     } else {
-      Object.assign(SolidtechRNConfig, keyOrObject)
+      Object.assign(IgniteConfig, keyOrObject)
     }
-    saveSolidtechRNConfig(SolidtechRNConfig)
+    saveIgniteConfig(IgniteConfig)
   }
 
   /**
    * Remove Global Config setting
    */
-  function removeSolidtechRNConfig(key: string) {
-    const SolidtechRNConfig = dissoc(key, loadSolidtechRNConfig())
-    saveSolidtechRNConfig(SolidtechRNConfig)
+  function removeIgniteConfig(key: string) {
+    const IgniteConfig = dissoc(key, loadIgniteConfig())
+    saveIgniteConfig(IgniteConfig)
   }
 
   return {
-    setSolidtechRNConfig,
-    removeSolidtechRNConfig,
-    saveSolidtechRNConfig,
-    loadSolidtechRNConfig,
+    setIgniteConfig,
+    removeIgniteConfig,
+    saveIgniteConfig,
+    loadIgniteConfig,
   }
 }

@@ -60,13 +60,13 @@ function enforce(opts = {}) {
    * @param {string} installedVersion - current version if installed.
    */
   function printNotMetMessage(installedVersion) {
-    console.log('SolidtechRN CLI requires ' + packageName + ' ' + range + ' to be installed.')
+    
     if (installedVersion) {
-      console.log('')
-      console.log('You currently have ' + installedVersion + ' installed.')
+      
+      
     }
-    console.log('')
-    console.log(installMessage)
+    
+    
   }
 
   /**

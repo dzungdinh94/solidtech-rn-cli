@@ -11,8 +11,8 @@ const REACT_NATIVE_VERSION = '0.58.0'
  */
 function attach(toolbox: SolidtechRNToolbox) {
   // fist-full o features
-  const { parameters, print, system, filesystem, strings, SolidtechRN } = toolbox
-  const { log } = SolidtechRN
+  const { parameters, print, system, filesystem, strings, ignite } = toolbox
+  const { log } = ignite
 
   /**
    * Installs React Native.

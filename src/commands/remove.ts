@@ -1,5 +1,5 @@
 import { concat, pathOr, join, map, assoc } from 'ramda'
-import prependSolidtechRN from '../lib/prepend-solidtechRN'
+import prependIgnite from '../lib/prepend-solidtechRN'
 import findPluginFile from '../lib/find-plugin-file'
 import exitCodes from '../lib/exit-codes'
 import * as path from 'path'
@@ -25,10 +25,10 @@ const existsLocally = moduleName => {
 
 module.exports = {
   alias: ['r'],
-  description: 'Removes an SolidtechRN CLI plugin.',
+  description: 'Removes an Ignite CLI plugin.',
   run: async function(toolbox: SolidtechRNToolbox) {
     // grab a fist-full of features...
-    const { print, parameters, prompt, solidtechRN, system } = toolbox
+    const { print, parameters, prompt, ignite, system } = toolbox
     const { info, warning, xmark, error, success } = print
     const { options } = parameters
 
@@ -40,21 +40,21 @@ module.exports = {
     // Check if they used a directory path instead of a plugin name
     if (moduleParam.includes(path.sep) && !isScoped) {
       error(`💩 When removing a package, you shouldn't use a path.
-    Try ${toolbox.print.colors.highlight(`solidtechRN remove ${moduleParam.split(path.sep).pop()}`)} instead.`)
+    Try ${toolbox.print.colors.highlight(`ignite remove ${moduleParam.split(path.sep).pop()}`)} instead.`)
       process.exit(exitCodes.PLUGIN_NAME)
     }
 
-    // prepend `solidtechRN` as convention
+    // prepend `ignite` as convention
     let moduleName = moduleParam
     if (!isScoped) {
-      moduleName = prependSolidtechRN(moduleParam)
+      moduleName = prependIgnite(moduleParam)
     }
 
     info(`🔎    Verifying Plugin`)
 
     // Make sure what they typed, exists locally
     if (existsLocally(moduleName)) {
-      const config = solidtechRN.loadSolidtechRNConfig()
+      const config = ignite.loadIgniteConfig()
       // Detect generator changes
       const changes = detectRemovals(config.generators, moduleName)
       // Ask user if they are sure.
@@ -72,7 +72,7 @@ module.exports = {
           const generatorsList = Object.assign({}, config.generators)
           map(k => delete generatorsList[k], changes)
           const updatedConfig = assoc('generators', generatorsList, config)
-          solidtechRN.saveSolidtechRNConfig(updatedConfig)
+          ignite.saveIgniteConfig(updatedConfig)
         } else {
           process.exit(exitCodes.GENERIC)
         }
@@ -84,14 +84,14 @@ module.exports = {
         // Call remove functionality
         const pluginModule = require(pluginFile)
 
-        // set the path to the current running solidtechRN plugin
-        solidtechRN.setSolidtechRNPluginPath(modulePath)
+        // set the path to the current running ignite plugin
+        ignite.setIgnitePluginPath(modulePath)
 
         if (pluginModule.hasOwnProperty('remove')) {
           try {
             await pluginModule.remove(toolbox)
           } catch (e) {
-            solidtechRN.log(e)
+            ignite.log(e)
             process.exit(exitCodes.GENERIC)
           }
         } else {
@@ -107,7 +107,7 @@ module.exports = {
 
       success(`${xmark}    Removed`)
     } else {
-      error("💩  We couldn't find that solidtechRN plugin")
+      error("💩  We couldn't find that ignite plugin")
       warning(`Please make sure ${moduleName} exists in package.json`)
       process.exit(1)
     }

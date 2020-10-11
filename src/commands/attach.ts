@@ -15,6 +15,6 @@ module.exports = {
 
     await attachSolidtechRN(toolbox, { createdWith: meta.version(), boilerplate: 'empty', boilerplateVersion: '' })
 
-    toolbox.print.info(`🔥  Good to go! Type ${print.colors.bold('solidtechRN')} to get started.`)
+    toolbox.print.info(`🔥  Good to go! Type ${print.colors.bold('ignite')} to get started.`)
   },
 }

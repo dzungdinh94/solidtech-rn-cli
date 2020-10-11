@@ -11,7 +11,7 @@ export default (toolbox: SolidtechRNToolbox) => {
    *
    */
   function patchInFile(file: string, opts: SolidtechRNPatchInFileOptions) {
-    const { SolidtechRN } = toolbox
+    const { ignite } = toolbox
 
     if (!filesystem.exists(file)) return
 
@@ -35,7 +35,7 @@ export default (toolbox: SolidtechRNToolbox) => {
       }
     } else {
       // Insert before/after a particular string
-      SolidtechRN.patching.insertInFile(file, opts.before || opts.after, newString, !!opts.after)
+      ignite.patching.insertInFile(file, opts.before || opts.after, newString, !!opts.after)
     }
   }
 

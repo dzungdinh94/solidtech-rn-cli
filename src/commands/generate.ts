@@ -33,7 +33,7 @@ module.exports = {
     const footer = () => {
       newline()
       info(muted('  --------------------------------------------------------------------------'))
-      info(muted(`  Check out ${white('https://github.com/solidtechvn/solidtechRN')} for more information`)) // prettier-ignore
+      info(muted(`  Check out ${white('https://github.com/solidtechvn/ignite')} for more information`)) // prettier-ignore
       info(muted('  or join our Slack community at http://community.infinite.red.'))
     }
 
@@ -50,7 +50,7 @@ module.exports = {
     }
 
     // print out all the generators
-    info(`✨ Type ${bold('solidtechRN generate')} ${yellow('________')} to run one of these generators:\n`)
+    info(`✨ Type ${bold('ignite generate')} ${yellow('________')} to run one of these generators:\n`)
 
     // turn into data we can print
     const data = pipe(

@@ -1,4 +1,4 @@
-// SolidtechRN CLI plugin for <%= props.name %>
+// ignite CLI plugin for <%= props.name %>
 // ----------------------------------------------------------------------------
 
 const NPM_MODULE_NAME = 'react-native-MODULENAME'
@@ -10,10 +10,10 @@ const NPM_MODULE_VERSION = '0.0.1'
 
 const add = async function (toolbox) {
   // Learn more about toolbox: https://solidtechvn.github.io/gluegun/#/toolbox-api.md
-  const { SolidtechRN } = toolbox
+  const { ignite } = toolbox
 
   // install an NPM module and link it
-  await SolidtechRN.addModule(NPM_MODULE_NAME, { link: true, version: NPM_MODULE_VERSION })
+  await ignite.addModule(NPM_MODULE_NAME, { link: true, version: NPM_MODULE_VERSION })
 
   // Example of copying templates/<%= props.name %> to app/<%= props.pluginName %>
   // if (!toolbox.filesystem.exists(`${APP_PATH}/app/<%= props.pluginName %>`)) {
@@ -21,7 +21,7 @@ const add = async function (toolbox) {
   // }
 
   // Example of patching a file
-  // SolidtechRN.patchInFile(`${APP_PATH}/app/config/app-config.js`, {
+  // ignite.patchInFile(`${APP_PATH}/app/config/app-config.js`, {
   //   insert: `import '../<%= props.pluginName %>/<%= props.pluginName %>'\n`,
   //   before: `export default {`
   // })
@@ -32,10 +32,10 @@ const add = async function (toolbox) {
  */
 const remove = async function (toolbox) {
   // Learn more about toolbox: https://solidtechvn.github.io/gluegun/#/toolbox-api.md
-  const { SolidtechRN } = toolbox
+  const { ignite } = toolbox
 
   // remove the npm module and unlink it
-  await SolidtechRN.removeModule(NPM_MODULE_NAME, { unlink: true })
+  await ignite.removeModule(NPM_MODULE_NAME, { unlink: true })
 
   // Example of removing app/<%= props.name %> folder
   // const remove<%= props.pluginName %> = await toolbox.prompt.confirm(
@@ -44,11 +44,11 @@ const remove = async function (toolbox) {
   // if (remove<%= props.pluginName %>) { toolbox.filesystem.remove(`${APP_PATH}/app/<%= props.pluginName %>`) }
 
   // Example of unpatching a file
-  // SolidtechRN.patchInFile(`${APP_PATH}/app/config/app-config.js`, {
+  // ignite.patchInFile(`${APP_PATH}/app/config/app-config.js`, {
   //   delete: `import '../<%= props.pluginName %>/<%= props.pluginName %>'\n`
   // )
 }
 
-// Required in all SolidtechRN CLI plugins
+// Required in all ignite CLI plugins
 module.exports = { add, remove }
 

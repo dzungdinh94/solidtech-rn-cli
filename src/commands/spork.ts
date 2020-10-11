@@ -6,18 +6,18 @@ module.exports = {
   run: async function(context) {
     // ensure we're in a supported directory
     if (!isSolidtechRNDirectory(process.cwd())) {
-      context.print.error('The `solidtechRN spork` command must be run in an solidtechRN-compatible directory.')
-      process.exit(exitCodes.NOT_solidtechRN_PROJECT)
+      context.print.error('The `ignite spork` command must be run in an ignite-compatible directory.')
+      process.exit(exitCodes.NOT_ignite_PROJECT)
     }
 
     // grab a fist-full of features...
     const { print, filesystem, parameters } = context
     const { warning, success, info } = print
 
-    // solidtechRN spork
+    // ignite spork
     // -> lists all generator plugins (identified in json)
-    const pluginOptions = context.solidtechRN.findSolidtechRNPlugins().reduce((a, k) => {
-      const jsonFile = `${k.directory}/solidtechRN.json`
+    const pluginOptions = context.ignite.findSolidtechRNPlugins().reduce((a, k) => {
+      const jsonFile = `${k.directory}/ignite.json`
       if (filesystem.exists(jsonFile)) {
         const jsonContents = filesystem.read(jsonFile, 'json') || {}
         if (jsonContents.generators) {
@@ -43,7 +43,7 @@ module.exports = {
       selectedPlugin = answer.selectedPlugin
     }
 
-    const directory = context.solidtechRN.findSolidtechRNPlugins().find(x => x.name === selectedPlugin).directory
+    const directory = context.ignite.findSolidtechRNPlugins().find(x => x.name === selectedPlugin).directory
     const choices = filesystem.list(`${directory}/templates`)
 
     // Ask (if necessary)
@@ -66,7 +66,7 @@ module.exports = {
 
     // TODO: This will be wonky if you're not in root of your project
     copyFiles.selectedTemplates.map(template => {
-      const destination = `solidtechRN/Spork/${selectedPlugin}/${template}`
+      const destination = `ignite/Spork/${selectedPlugin}/${template}`
       filesystem.copyAsync(`${directory}/templates/${template}`, destination)
       info(` 🔘 ${destination}`)
     })

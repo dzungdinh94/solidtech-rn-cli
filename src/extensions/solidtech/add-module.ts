@@ -28,8 +28,8 @@ export default (toolbox: SolidtechRNToolbox) => {
    * Adds a npm-based module to the project.
    */
   async function addModule(moduleName: string, options: AddModuleOptions = {}) {
-    const { print, system, SolidtechRN } = toolbox
-    const { useYarn } = SolidtechRN
+    const { print, system, ignite } = toolbox
+    const { useYarn } = ignite
     const moduleFullName = getModuleName(moduleName, options)
 
     const depType = options.dev ? 'as dev dependency' : ''
@@ -39,12 +39,12 @@ export default (toolbox: SolidtechRNToolbox) => {
     if (useYarn) {
       const addSwitch = options.dev ? '--dev' : ''
       const cmd = trim(`yarn add ${moduleFullName} ${addSwitch}`)
-      SolidtechRN.log(cmd)
+      ignite.log(cmd)
       await system.run(cmd)
     } else {
       const installSwitch = options.dev ? '--save-dev' : '--save'
       const cmd = trim(`npm i ${moduleFullName} ${installSwitch}`)
-      SolidtechRN.log(cmd)
+      ignite.log(cmd)
       await system.run(cmd)
     }
     spinner.stop()

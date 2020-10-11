@@ -1,6 +1,6 @@
 /**
- * This is an example SolidtechRN plugin generator. You can run it when it's installed to
- * your project by doing `SolidtechRN generate <%= props.name %> foo`.
+ * This is an example ignite plugin generator. You can run it when it's installed to
+ * your project by doing `ignite generate <%= props.name %> foo`.
  * 
  * You can rename this command to anything you'd like, or add others.
  * 
@@ -11,12 +11,12 @@ module.exports = {
   description: "Example <%= props.name %> generator",
   run: async function (toolbox) {
     // Learn more about toolbox: https://solidtechvn.github.io/gluegun/#/toolbox-api.md
-    const { parameters, strings, print, SolidtechRN } = toolbox
+    const { parameters, strings, print, ignite } = toolbox
     const { pascalCase, isBlank } = strings
 
     // validation
     if (isBlank(parameters.first)) {
-      print.info(`SolidtechRN generate <%= props.name %> <name>\n`)
+      print.info(`ignite generate <%= props.name %> <name>\n`)
       print.info('A name is required.')
       return
     }
@@ -32,6 +32,6 @@ module.exports = {
     }]
 
     // make the templates and pass in props with the third argument here
-    await SolidtechRN.copyBatch(toolbox, jobs, props)
+    await ignite.copyBatch(toolbox, jobs, props)
   }
 }

@@ -8,7 +8,6 @@ if (['v', 'version', '-v', '--v', '-version', '--version'].includes(process.argv
   var package = JSON.parse(contents)
 
   // now output the version and exit
-  console.log(package.version)
   process.exit(0)
 }
 

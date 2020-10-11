@@ -8,7 +8,7 @@ export type CopyBatchOptions = {
 export default (toolbox: SolidtechRNToolbox) => {
   function findSpork(toolbox, template) {
     const { filesystem } = toolbox
-    const sporkDirectory = `${filesystem.cwd()}/SolidtechRN/Spork/${toolbox.plugin.name}`
+    const sporkDirectory = `${filesystem.cwd()}/Ignite/Spork/${toolbox.plugin.name}`
 
     return filesystem.exists(`${sporkDirectory}/${template}`) ? sporkDirectory : false
   }
@@ -16,12 +16,17 @@ export default (toolbox: SolidtechRNToolbox) => {
   /**
    * Runs a series of jobs through the templating system.
    */
-  async function copyBatch(toolbox: SolidtechRNToolbox, jobs: SolidtechRNCopyJob[], props: any, opts: CopyBatchOptions = {}) {
+  async function copyBatch(
+    toolbox: SolidtechRNToolbox,
+    jobs: SolidtechRNCopyJob[],
+    props: any,
+    opts: CopyBatchOptions = {},
+  ) {
     // grab some features
-    const { template, prompt, filesystem, SolidtechRN, print } = toolbox
+    const { template, prompt, filesystem, ignite, print } = toolbox
     const { confirm } = prompt
-    const { SolidtechRNPluginPath } = SolidtechRN
-    const config = SolidtechRN.loadSolidtechRNConfig()
+    const { ignitePluginPath } = ignite
+    const config = ignite.loadIgniteConfig()
     const quiet = opts && Boolean(opts.quiet)
     const directory = opts.directory
 
@@ -44,7 +49,7 @@ export default (toolbox: SolidtechRNToolbox) => {
 
       // generate the React component
       if (await shouldGenerate(job.target)) {
-        const currentPluginPath = SolidtechRNPluginPath()
+        const currentPluginPath = ignitePluginPath()
 
         const sporkDirectory = findSpork(toolbox, job.template)
 

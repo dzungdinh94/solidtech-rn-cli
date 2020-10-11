@@ -26,8 +26,7 @@ export default async function(toolbox: SolidtechRNToolbox) {
   print.info(print.colors.yellow(`  cd ${name}`))
   print.info(print.colors.yellow('  npx react-native run-android'))
   print.info('')
-  print.info('To see what solidtechRN can do for you:')
+  print.info('To see what ignite can do for you:')
   print.info(print.colors.yellow(`  cd ${name}`))
-  print.info(print.colors.yellow('  solidtechRN'))
   print.info('')
 }

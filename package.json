@@ -1,6 +1,6 @@
 {
   "name": "solidtech-rn-cli",
-  "version": "3.5.3",
+  "version": "3.5.4",
   "description": "An unfair headstart for your React Native apps. Save 2+ weeks of development!",
   "bin": {
     "solidtech-rn": "bin/solidtech-rn"

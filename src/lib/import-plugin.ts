@@ -4,15 +4,16 @@ import { SolidtechRNDetectInstall, SolidtechRNToolbox } from '../types'
 /**
  * Install this module.
  */
+
 async function importPlugin(toolbox: SolidtechRNToolbox, opts: SolidtechRNDetectInstall) {
   const { isEmpty, forEach, trim } = require('ramda')
   const { moduleName, version, type, directory, url } = opts
-  const { solidtechRN, system, filesystem } = toolbox
-  const { log } = solidtechRN
+
+  const { ignite, system, filesystem } = toolbox
+  const { log } = ignite
   const isDirectory = type === 'directory'
   const target = isDirectory ? directory : moduleName
   const packageVersion = version && !isDirectory ? `@${version}` : ''
-
   const getNPMPluginCommand = async () => {
     // check to see if it exists first
     try {
@@ -28,7 +29,7 @@ async function importPlugin(toolbox: SolidtechRNToolbox, opts: SolidtechRNDetect
 
     // prepare command line
     let command = ''
-    if (solidtechRN.useYarn === true) {
+    if (ignite.useYarn === true) {
       command = `yarn add ${target}${packageVersion} --dev`
     } else {
       command = trim(`npm i ${target}${packageVersion} --save-dev`)
@@ -40,7 +41,7 @@ async function importPlugin(toolbox: SolidtechRNToolbox, opts: SolidtechRNDetect
   const getDirectoryPluginCommand = async () => {
     // prepare command line
     let command = ''
-    if (solidtechRN.useYarn === true) {
+    if (ignite.useYarn === true) {
       // where is the yarn cache?
       log(`checking for yarn cache`)
       const rawCacheDir = await system.exec('yarn cache dir')
@@ -71,7 +72,7 @@ async function importPlugin(toolbox: SolidtechRNToolbox, opts: SolidtechRNDetect
   const getGitPluginCommand = async () => {
     // prepare command line
     let command = ''
-    if (solidtechRN.useYarn === true) {
+    if (ignite.useYarn === true) {
       command = `yarn add ${url} --force --dev`
     } else {
       command = `npm i ${url} --save-dev`
@@ -98,7 +99,7 @@ async function importPlugin(toolbox: SolidtechRNToolbox, opts: SolidtechRNDetect
 
   log(command)
   await system.run(command)
-  log(`finished ${solidtechRN.useYarn === true ? 'yarn' : 'npm'} command`)
+  log(`finished ${ignite.useYarn === true ? 'yarn' : 'npm'} command`)
 }
 
 /**
@@ -107,8 +108,8 @@ async function importPlugin(toolbox: SolidtechRNToolbox, opts: SolidtechRNDetect
  */
 export default async (toolbox: SolidtechRNToolbox, specs: SolidtechRNDetectInstall): Promise<number | void> => {
   const { moduleName } = specs
-  const { print, solidtechRN } = toolbox
-  const { log } = solidtechRN
+  const { print, ignite } = toolbox
+  const { log } = ignite
   const spinner = print.spin(`adding ${print.colors.cyan(moduleName)}`)
 
   if (specs.type) {
@@ -121,7 +122,7 @@ export default async (toolbox: SolidtechRNToolbox, specs: SolidtechRNDetectInsta
         print.info('')
         print.info(print.colors.muted('-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'))
         print.error('  We also searched in these directories:\n')
-        solidtechRN.pluginOverrides.forEach(dir => {
+        ignite.pluginOverrides.forEach(dir => {
           print.info(`    ▸ ${dir}`)
         })
         print.info(print.colors.muted('-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'))
@@ -134,7 +135,7 @@ export default async (toolbox: SolidtechRNToolbox, specs: SolidtechRNDetectInsta
       return exitCodes.PLUGIN_INVALID
     }
   } else {
-    spinner.fail(`💩  invalid solidtechRN plugin`)
+    spinner.fail(`💩  invalid ignite plugin`)
     return exitCodes.PLUGIN_INVALID
   }
   spinner.stop()

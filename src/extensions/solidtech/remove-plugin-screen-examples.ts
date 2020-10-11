@@ -16,13 +16,13 @@ export default (toolbox: SolidtechRNToolbox) => {
    * ])
    */
   async function removePluginScreenExamples(files: SolidtechRNPluginScreenFile[]) {
-    const { filesystem, SolidtechRN, print } = toolbox
-    const { SolidtechRNPluginPath, patching } = SolidtechRN
+    const { filesystem, ignite, print } = toolbox
+    const { ignitePluginPath, patching } = ignite
 
-    const config = SolidtechRN.loadSolidtechRNConfig()
+    const config = ignite.loadIgniteConfig()
 
     // consider this being part of toolbox.SolidtechRN
-    const pluginName = takeLast(1, split(path.sep, SolidtechRNPluginPath()))[0]
+    const pluginName = takeLast(1, split(path.sep, ignitePluginPath()))[0]
 
     // currently only supporting 1 form of examples
     if (config.examples === 'classic') {

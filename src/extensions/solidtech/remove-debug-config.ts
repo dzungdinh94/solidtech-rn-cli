@@ -12,7 +12,9 @@ export default (toolbox: SolidtechRNToolbox) => {
     const debugConfig = `${process.cwd()}/App/Config/DebugConfig.js`
 
     if (!filesystem.exists(debugConfig)) {
-      print.error('💩 No `App/Config/DebugConfig.js` file found in this folder, are you sure it is an SolidtechRN project?')
+      print.error(
+        '💩 No `App/Config/DebugConfig.js` file found in this folder, are you sure it is an SolidtechRN project?',
+      )
       process.exit(exitCodes.GENERIC)
     }
 

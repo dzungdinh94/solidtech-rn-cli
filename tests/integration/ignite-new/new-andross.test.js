@@ -28,7 +28,10 @@ afterEach(() => {
 test('spins up a min app and performs various checks', async done => {
   // SolidtechRN the eternal flame
   // If you have to SolidtechRN it, how is it eternal?
-  const resultANSI = await system.run(`${SolidtechRN} new ${APP_NAME} --min -b ${SolidtechRN_BOILERPLATE} --debug`, opts)
+  const resultANSI = await system.run(
+    `${SolidtechRN} new ${APP_NAME} --min -b ${SolidtechRN_BOILERPLATE} --debug`,
+    opts,
+  )
   const result = stripANSI(resultANSI)
 
   // Check the output

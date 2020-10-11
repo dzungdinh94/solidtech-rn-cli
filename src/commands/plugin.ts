@@ -28,7 +28,7 @@ const walkthrough = async (toolbox: SolidtechRNToolbox) => {
     },
     {
       name: 'generator',
-      message: 'Will your plugin have a generator command? (e.g. solidtechRN generate <mygenerator> <name>)',
+      message: 'Will your plugin have a generator command? (e.g. ignite generate <mygenerator> <name>)',
       type: 'list',
       choices: ['No', 'Yes'],
     },
@@ -41,9 +41,9 @@ const walkthrough = async (toolbox: SolidtechRNToolbox) => {
  * @param {Object} toolbox The gluegun toolbox.
  */
 const createNewPlugin = async (toolbox: SolidtechRNToolbox) => {
-  const { parameters, print, solidtechRN, strings, meta } = toolbox
+  const { parameters, print, ignite, strings, meta } = toolbox
   const pluginName = validateName(parameters.second, toolbox)
-  const name = strings.pascalCase(pluginName.replace(/^solidtechRN-/, ''))
+  const name = strings.pascalCase(pluginName.replace(/^ignite-/, ''))
 
   // Plugin generation walkthrough
   const answers = await walkthrough(toolbox)
@@ -54,7 +54,7 @@ const createNewPlugin = async (toolbox: SolidtechRNToolbox) => {
   const copyJobs: SolidtechRNCopyJob[] = [
     { template: 'plugin/gitignore', target: `${pluginName}/.gitignore` },
     { template: 'plugin/plugin.js.ejs', target: `${pluginName}/plugin.js` },
-    { template: 'plugin/solidtechRN.json.ejs', target: `${pluginName}/solidtechRN.json` },
+    { template: 'plugin/ignite.json.ejs', target: `${pluginName}/ignite.json` },
     { template: 'plugin/package.json.ejs', target: `${pluginName}/package.json` },
     { template: 'plugin/README.md', target: `${pluginName}/README.md` },
     { template: 'plugin/test/add.js.ejs', target: `${pluginName}/test/add.js` },
@@ -81,11 +81,11 @@ const createNewPlugin = async (toolbox: SolidtechRNToolbox) => {
   }
 
   // copy over the files
-  await solidtechRN.copyBatch(toolbox, copyJobs, {
+  await ignite.copyBatch(toolbox, copyJobs, {
     name,
     pluginName,
     answers,
-    solidtechRNVersion: meta.version(),
+    igniteVersion: meta.version(),
     isGenerator: answers.generator === 'Yes',
   })
 }
@@ -98,21 +98,21 @@ const createNewPlugin = async (toolbox: SolidtechRNToolbox) => {
 const showHelp = (toolbox: SolidtechRNToolbox) => {
   const instructions = `
 Generates an SolidtechRN CLI-compatible plugin in the current folder.
-Generally, you would run this from ./YourApp/solidtechRN/plugins/
+Generally, you would run this from ./YourApp/ignite/plugins/
 
 Commands:
-  solidtechRN plugin help
-  solidtechRN plugin new <your-plugin>
+  ignite plugin help
+  ignite plugin new <your-plugin>
 
 Example:
-  solidtechRN plugin new solidtechRN-mobx`
+  ignite plugin new ignite-mobx`
   toolbox.print.info(instructions)
   process.exit(exitCodes.OK)
 }
 
 module.exports = {
   alias: ['p'],
-  description: 'Manages solidtechRN plugins',
+  description: 'Manages ignite plugins',
   run: async function(toolbox: SolidtechRNToolbox) {
     const { parameters } = toolbox
 

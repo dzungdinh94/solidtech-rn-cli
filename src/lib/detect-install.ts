@@ -16,14 +16,14 @@ const GIT_REGEX = /^(git|ssh|https)(?:@|:\/\/)(?:[github|gitlab|bitbucket]+[.\w]
  */
 export default function detectInstall(plugin: string, toolbox: SolidtechRNToolbox): SolidtechRNDetectInstall {
   // grab some gluegun goodies
-  const { filesystem, solidtechRN } = toolbox
+  const { filesystem, ignite } = toolbox
   const sep = path.sep // why isn't filesystem.separator working here?
 
   // grab the plugin overrides
-  const pluginOverrides = (solidtechRN && solidtechRN.pluginOverrides) || []
+  const pluginOverrides = (ignite && ignite.pluginOverrides) || []
 
   /**
-   * Is this a valid solidtechRN plugin?
+   * Is this a valid ignite plugin?
    *
    * @param  {string} candidate - The potential directory to check.
    * @return {boolean}          - True if this is valid; otherwise false.

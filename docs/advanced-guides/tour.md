@@ -24,7 +24,7 @@ The commands you can run with SolidtechRN CLI, such as `SolidtechRN add <plugin>
 
 ```javascript
 module.exports = async function(toolbox) {
-  const { print, filesystem, prompt, SolidtechRN, parameters, strings } = toolbox
+  const { print, filesystem, prompt, ignite, parameters, strings } = toolbox
   // ...
 }
 ```

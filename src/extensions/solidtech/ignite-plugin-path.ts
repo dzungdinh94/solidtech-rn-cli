@@ -2,26 +2,26 @@ import { SolidtechRNToolbox } from '../../types'
 
 export default (toolbox: SolidtechRNToolbox) => {
   /**
-   * The current executing SolidtechRN plugin path.
+   * The current executing Ignite plugin path.
    */
   let pluginPath = null
 
   /**
-   * Set the current executing SolidtechRN plugin path.
+   * Set the current executing Ignite plugin path.
    */
-  function setSolidtechRNPluginPath(path) {
+  function setIgnitePluginPath(path) {
     pluginPath = path
   }
 
   /**
-   * Gets the path to the current running SolidtechRN plugin.
+   * Gets the path to the current running Ignite plugin.
    */
-  function SolidtechRNPluginPath() {
+  function ignitePluginPath() {
     return pluginPath
   }
 
   return {
-    setSolidtechRNPluginPath,
-    SolidtechRNPluginPath,
+    setIgnitePluginPath,
+    ignitePluginPath,
   }
 }
